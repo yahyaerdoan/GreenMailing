@@ -6,4 +6,11 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Abstract\IGenericRepository\" />
+    <Folder Include="Abstract\IAbstractDal\" />
+    <Folder Include="Concrete\GenericRepository\" />
+    <Folder Include="Concrete\ConcreteDal\" />
+  </ItemGroup>
+
 </Project>
