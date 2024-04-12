@@ -9,8 +9,9 @@
   <ItemGroup>
     <Folder Include="Abstract\IGenericRepository\" />
     <Folder Include="Abstract\IAbstractDal\" />
+    <Folder Include="Concrete\ConcreteDal\EntityFramework\" />
     <Folder Include="Concrete\GenericRepository\" />
-    <Folder Include="Concrete\ConcreteDal\" />
+    <Folder Include="Concrete\Context\" />
   </ItemGroup>
 
 </Project>
