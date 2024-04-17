@@ -7,7 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Abstract\IGenericService\" />
     <Folder Include="Abstract\IAbstractService\" />
     <Folder Include="Concrete\ConcreteManager\" />
   </ItemGroup>

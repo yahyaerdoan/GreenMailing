@@ -7,10 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Abstract\IGenericRepository\" />
     <Folder Include="Abstract\IAbstractDal\" />
     <Folder Include="Concrete\ConcreteDal\EntityFramework\" />
-    <Folder Include="Concrete\GenericRepository\" />
   </ItemGroup>
 
   <ItemGroup>
