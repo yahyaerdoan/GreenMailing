@@ -18,4 +18,8 @@
     <ProjectReference Include="..\GreenMailing.EntityLayer\GreenMailing.EntityLayer.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\Template\vertical-layout\assets\plugins\alerts-boxes\css\" />
+  </ItemGroup>
+
 </Project>
