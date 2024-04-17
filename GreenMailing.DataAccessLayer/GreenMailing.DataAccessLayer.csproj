@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -11,7 +11,10 @@
     <Folder Include="Abstract\IAbstractDal\" />
     <Folder Include="Concrete\ConcreteDal\EntityFramework\" />
     <Folder Include="Concrete\GenericRepository\" />
-    <Folder Include="Concrete\Context\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\GreenMailing.EntityLayer\GreenMailing.EntityLayer.csproj" />
   </ItemGroup>
 
 </Project>

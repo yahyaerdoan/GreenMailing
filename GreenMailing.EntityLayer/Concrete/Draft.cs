@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace GreenMailing.EntityLayer.Concrete
 {
-    public class AppUser
+    public class Draft
     {
+        public int DraftId { get; set; }        
     }
 }
