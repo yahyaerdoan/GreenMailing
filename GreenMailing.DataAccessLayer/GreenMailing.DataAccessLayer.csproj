@@ -7,11 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Abstract\IAbstractDal\" />
-    <Folder Include="Concrete\ConcreteDal\EntityFramework\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\GreenMailing.EntityLayer\GreenMailing.EntityLayer.csproj" />
   </ItemGroup>
 
