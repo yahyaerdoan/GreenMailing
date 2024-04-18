@@ -20,7 +20,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ViewComponents\" />
     <Folder Include="wwwroot\Template\vertical-layout\assets\plugins\alerts-boxes\css\" />
   </ItemGroup>
 
