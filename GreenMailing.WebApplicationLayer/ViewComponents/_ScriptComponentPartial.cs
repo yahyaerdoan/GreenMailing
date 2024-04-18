@@ -2,11 +2,12 @@
 
 namespace GreenMailing.WebApplicationLayer.ViewComponents
 {
-    public class _HeadComponentPartial : ViewComponent
+    public class _ScriptComponentPartial : ViewComponent
     {
         public IViewComponentResult Invoke()
         {
             return View();
         }
     }
+
 }
