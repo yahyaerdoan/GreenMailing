@@ -15,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\GreenMailing.BusinessLayer\GreenMailing.BusinessLayer.csproj" />
     <ProjectReference Include="..\GreenMailing.DataAccessLayer\GreenMailing.DataAccessLayer.csproj" />
     <ProjectReference Include="..\GreenMailing.EntityLayer\GreenMailing.EntityLayer.csproj" />
   </ItemGroup>

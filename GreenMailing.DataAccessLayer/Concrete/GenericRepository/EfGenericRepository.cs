@@ -1,4 +1,6 @@
 ﻿using GreenMailing.DataAccessLayer.Abstract.IGenericRepository;
+using GreenMailing.EntityLayer.Concrete;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -10,12 +12,12 @@ using System.Threading.Tasks;
 
 namespace GreenMailing.DataAccessLayer.Concrete.GenericRepository
 {
-    public class EfGenericRepository<TEntity, TContext> : IGenericRepository<TEntity> where TEntity : class, new() where TContext : DbContext, new()
+    public class EfGenericRepository<TEntity, TContext> : IGenericRepository<TEntity> where TEntity : class, new() where TContext : IdentityDbContext<User, Role, int>, new()
     {
-        protected readonly DbContext context;
+        protected readonly IdentityDbContext<User, Role, int> context;
         protected readonly DbSet<TEntity> set;
 
-        public EfGenericRepository(DbContext context)
+        public EfGenericRepository(IdentityDbContext<User, Role, int> context)
         {
             this.context = context;
             this.set = this.context.Set<TEntity>();
@@ -45,8 +47,14 @@ namespace GreenMailing.DataAccessLayer.Concrete.GenericRepository
 
         public List<TEntity> GetAll(Expression<Func<TEntity, bool>>? filter = null)
         {
-            var values = set.Where(filter).ToList();
-            return values;
+            if (filter != null)
+            {
+                return set.Where(filter).ToList();
+            }
+            else
+            {
+                return set.ToList();
+            }
         }
 
         public void Update(TEntity entity)

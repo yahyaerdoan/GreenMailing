@@ -1,4 +1,5 @@
-﻿@{
+﻿@model List<Message>
+@{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Layout/Index.cshtml";
 }
@@ -35,30 +36,34 @@
                                     <div class="table-responsive">
                                         <table class="table table-hover">
                                             <tbody>
-                                                <tr>
-                                                    <td>
-                                                        <div class="icheck-material-primary my-0">
-                                                            <input id="checkbox1" type="checkbox" checked="checked">
-                                                            <label for="checkbox1">
-                                                            </label>
-                                                        </div>
-                                                    </td>
-                                                    <td class="mail-rateing">
-                                                        <i class="fa fa-star"></i>
-                                                    </td>
-                                                    <td>
-                                                        <a href="mail-read.html">Google Inc</a>
-                                                    </td>
-                                                    <td>
-                                                        <a href="mail-read.html"><i class="fa fa-circle text-info mr-2"></i>Lorem ipsum dolor sit amet, consectetuer adipiscing</a>
-                                                    </td>
-                                                    <td>
-                                                        <i class="fa fa-paperclip"></i>
-                                                    </td>
-                                                    <td class="text-right">
-                                                        08:23 AM
-                                                    </td>
-                                                </tr>
+                                                @foreach (var item in Model)
+                                                {
+                                                    <tr>
+                                                        <td>
+                                                            <div class="icheck-material-primary my-0">
+                                                                <input id="checkbox1" type="checkbox" checked="checked">
+                                                                <label for="checkbox1">
+                                                                </label>
+                                                            </div>
+                                                        </td>
+                                                        <td class="mail-rateing">
+                                                            <i class="fa fa-star"></i>
+                                                        </td>
+                                                        <td>
+                                                            <a href="mail-read.html">@item.Subject</a>
+                                                        </td>
+                                                        <td>
+                                                            <a href="mail-read.html"><i class="fa fa-circle text-info mr-2"></i>@item.Content</a>
+                                                        </td>
+                                                        <td>
+                                                            <i class="fa fa-paperclip"></i>
+                                                        </td>
+                                                        <td class="text-right">
+                                                            08:23 AM
+                                                        </td>
+                                                    </tr>
+                                                }
+                                               
                                                 <tr>
                                                     <td>
                                                         <div class="icheck-material-primary my-0">

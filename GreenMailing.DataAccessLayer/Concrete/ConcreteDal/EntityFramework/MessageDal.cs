@@ -2,6 +2,7 @@
 using GreenMailing.DataAccessLayer.Concrete.Context;
 using GreenMailing.DataAccessLayer.Concrete.GenericRepository;
 using GreenMailing.EntityLayer.Concrete;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,7 @@ namespace GreenMailing.DataAccessLayer.Concrete.ConcreteDal.EntityFramework
 {
     public class MessageDal : EfGenericRepository<Message, GreenMailingDbContext>, IMessageDal
     {
-        public MessageDal(DbContext context) : base(context)
+        public MessageDal(IdentityDbContext<User, Role, int> context) : base(context)
         {
         }
     }

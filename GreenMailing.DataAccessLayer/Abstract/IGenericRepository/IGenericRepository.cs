@@ -9,7 +9,7 @@ namespace GreenMailing.DataAccessLayer.Abstract.IGenericRepository
 {
     public interface IGenericRepository<TEntity> where TEntity : class, new()
     {
-        List<TEntity> GetAll(Expression<Func<TEntity, bool>>? filter = null);
+        List<TEntity> GetAll(Expression<Func<TEntity, bool>>? filter = null);      
         TEntity Get(Expression<Func<TEntity, bool>> filter);
         void Add(TEntity entity);
         void Delete(TEntity entity);
