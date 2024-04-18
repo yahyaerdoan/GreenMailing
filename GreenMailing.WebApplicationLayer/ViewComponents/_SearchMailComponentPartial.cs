@@ -2,7 +2,7 @@
 
 namespace GreenMailing.WebApplicationLayer.ViewComponents
 {
-    public class _CalendarComponentPartial : ViewComponent
+    public class _SearchMailComponentPartial : ViewComponent
     {
         public IViewComponentResult Invoke()
         {
