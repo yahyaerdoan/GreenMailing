@@ -1,4 +1,4 @@
-﻿
+﻿@model User
 @{
     Layout = null;
 }
@@ -19,20 +19,29 @@
 						<img src="~/template/vertical-layout/assets/images/logo-icon.png" alt="logo icon">
 					</div>
 					<div class="card-title text-uppercase text-center py-3">Sign Up</div>
-					<form>
+					<form method="post" action="/Register/CreateUser/">
 						<div class="form-group">
-							<label for="exampleInputName" class="sr-only">Name</label>
+							<label for="exampleInputName" class="sr-only">First Name</label>
 							<div class="position-relative has-icon-right">
-								<input type="text" id="exampleInputName" class="form-control input-shadow" placeholder="Enter Your Name">
+								<input type="text" id="exampleInputName" class="form-control input-shadow" placeholder="Enter Your First Name" asp-for="FirstName">
 								<div class="form-control-position">
 									<i class="icon-user"></i>
 								</div>
 							</div>
 						</div>
 						<div class="form-group">
-							<label for="exampleInputEmailId" class="sr-only">Email ID</label>
+							<label for="exampleInputName" class="sr-only">Last Name</label>
 							<div class="position-relative has-icon-right">
-								<input type="text" id="exampleInputEmailId" class="form-control input-shadow" placeholder="Enter Your Email ID">
+								<input type="text" id="exampleInputName" class="form-control input-shadow" placeholder="Enter Your Last Name" asp-for="LastName">
+								<div class="form-control-position">
+									<i class="icon-user"></i>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="exampleInputEmailId" class="sr-only">Email</label>
+							<div class="position-relative has-icon-right">
+								<input type="text" id="exampleInputEmailId" class="form-control input-shadow" placeholder="Enter Your Email" asp-for="Email">
 								<div class="form-control-position">
 									<i class="icon-envelope-open"></i>
 								</div>
@@ -41,12 +50,12 @@
 						<div class="form-group">
 							<label for="exampleInputPassword" class="sr-only">Password</label>
 							<div class="position-relative has-icon-right">
-								<input type="text" id="exampleInputPassword" class="form-control input-shadow" placeholder="Choose Password">
+								<input type="text" id="exampleInputPassword" class="form-control input-shadow" placeholder="Choose Password" asp-for="PasswordHash">
 								<div class="form-control-position">
 									<i class="icon-lock"></i>
 								</div>
 							</div>
-						</div>
+						</div>				
 
 						<div class="form-group">
 							<div class="icheck-material-primary">
@@ -55,7 +64,7 @@
 							</div>
 						</div>
 
-						<button type="button" class="btn btn-primary btn-block waves-effect waves-light">Sign Up</button>
+						<button type="submit" class="btn btn-primary btn-block waves-effect waves-light">Sign Up</button>
 						<div class="text-center mt-3">Sign Up With</div>
 
 						<div class="form-row mt-4">
