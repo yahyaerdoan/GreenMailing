@@ -1,4 +1,5 @@
-﻿@{
+﻿@model LogInUserDto
+@{
     Layout = null;
 }
 
@@ -19,11 +20,13 @@
 						<img src="~/template/vertical-layout/assets/images/logo-icon.png" alt="logo icon">
 					</div>
 					<div class="card-title text-uppercase text-center py-3">Sign In</div>
-					<form>
+					<form method="post" action="/LogIn/Index/">
 						<div class="form-group">
 							<label for="exampleInputUsername" class="sr-only">Username</label>
 							<div class="position-relative has-icon-right">
-								<input type="text" id="exampleInputUsername" class="form-control input-shadow" placeholder="Enter Username">
+								<input type="text" id="exampleInputUsername" class="form-control input-shadow" placeholder="Enter Username" asp-for="Email">
+								<span class="text-danger" asp-validation-for="Email"></span>
+
 								<div class="form-control-position">
 									<i class="icon-user"></i>
 								</div>
@@ -32,7 +35,9 @@
 						<div class="form-group">
 							<label for="exampleInputPassword" class="sr-only">Password</label>
 							<div class="position-relative has-icon-right">
-								<input type="password" id="exampleInputPassword" class="form-control input-shadow" placeholder="Enter Password">
+								<input type="password" id="exampleInputPassword" class="form-control input-shadow" placeholder="Enter Password" asp-for="Password">
+								<span class="text-danger" asp-validation-for="Password"></span>
+
 								<div class="form-control-position">
 									<i class="icon-lock"></i>
 								</div>
@@ -49,7 +54,7 @@
 								<a href="authentication-reset-password.html">Reset Password</a>
 							</div>
 						</div>
-						<button type="button" class="btn btn-primary btn-block">Sign In</button>
+						<button type="submit" class="btn btn-primary btn-block">Sign In</button>
 						<div class="text-center mt-3">Sign In With</div>
 
 						<div class="form-row mt-4">
