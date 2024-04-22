@@ -1,4 +1,4 @@
-﻿@model User
+﻿@model CreateUserDto
 @{
     Layout = null;
 }
@@ -39,6 +39,15 @@
 							</div>
 						</div>
 						<div class="form-group">
+							<label for="exampleInputName" class="sr-only">User Name</label>
+							<div class="position-relative has-icon-right">
+								<input type="text" id="exampleInputName" class="form-control input-shadow" placeholder="Enter Your User Name" asp-for="UserName">
+								<div class="form-control-position">
+									<i class="icon-user"></i>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
 							<label for="exampleInputEmailId" class="sr-only">Email</label>
 							<div class="position-relative has-icon-right">
 								<input type="text" id="exampleInputEmailId" class="form-control input-shadow" placeholder="Enter Your Email" asp-for="Email">
@@ -50,7 +59,7 @@
 						<div class="form-group">
 							<label for="exampleInputPassword" class="sr-only">Password</label>
 							<div class="position-relative has-icon-right">
-								<input type="text" id="exampleInputPassword" class="form-control input-shadow" placeholder="Choose Password" asp-for="PasswordHash">
+								<input type="text" id="exampleInputPassword" class="form-control input-shadow" placeholder="Choose Password" asp-for="Password">
 								<div class="form-control-position">
 									<i class="icon-lock"></i>
 								</div>
