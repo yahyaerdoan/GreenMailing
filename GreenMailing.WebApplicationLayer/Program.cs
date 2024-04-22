@@ -8,6 +8,9 @@ using GreenMailing.DataAccessLayer.Concrete.GenericRepository;
 using GreenMailing.EntityLayer.Concrete;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using FluentValidation.AspNetCore;
+using GreenMailing.BusinessLayer.Concrete.ValidationRules.UserValidationRules;
+using FluentValidation;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,7 +25,12 @@ builder.Services.AddScoped<IUserService, UserManager>();
 
 builder.Services.AddIdentity<User, Role>()
     .AddEntityFrameworkStores<GreenMailingDbContext>();
-    //.AddErrorDescriber<CustomIdentityValidator>();
+//.AddErrorDescriber<CustomIdentityValidator>();
+builder.Services.AddFluentValidationAutoValidation(config =>
+{
+	config.DisableDataAnnotationsValidation = true;
+});
+builder.Services.AddValidatorsFromAssemblyContaining<CreateUserValidator>();
 
 builder.Services.AddControllersWithViews();
 
