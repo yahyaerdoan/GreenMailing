@@ -1,5 +1,6 @@
 ﻿using GreenMailing.BusinessLayer.Abstract.IAbstractService;
 using GreenMailing.DataAccessLayer.Abstract.IAbstractDal;
+using GreenMailing.DataTransferObjectLayer.Concrete.Dtos;
 using GreenMailing.EntityLayer.Concrete;
 using System;
 using System.Collections.Generic;
@@ -24,7 +25,12 @@ namespace GreenMailing.BusinessLayer.Concrete.ConcreteManager
             _userDal.Add(entity);
         }
 
-        public void Delete(User entity)
+		public async Task CreateUserAsync(CreateUserDto createUserDto)
+		{
+			await _userDal.CreateUserAsync(createUserDto);
+		}
+
+		public void Delete(User entity)
         {
             _userDal.Delete(entity);
         }

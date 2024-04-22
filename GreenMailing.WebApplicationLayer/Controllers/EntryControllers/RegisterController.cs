@@ -1,4 +1,5 @@
-﻿using GreenMailing.DataTransferObjectLayer.Concrete.Dtos;
+﻿using GreenMailing.BusinessLayer.Abstract.IAbstractService;
+using GreenMailing.DataTransferObjectLayer.Concrete.Dtos;
 using GreenMailing.EntityLayer.Concrete;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -6,36 +7,25 @@ using Microsoft.AspNetCore.Mvc;
 namespace GreenMailing.WebApplicationLayer.Controllers.EntryControllers
 {
 	public class RegisterController : Controller
-    {
-        private readonly UserManager<User> _userManager;
+	{
+		private readonly IUserService _userService;
 
-		public RegisterController(UserManager<User> userManager)
+		public RegisterController(IUserService userService)
 		{
-			_userManager = userManager;
+			_userService = userService;
 		}
 
-        [HttpGet]
+		[HttpGet]
 		public IActionResult Index()
-        {
-            return View();
-        }
+		{
+			return View();
+		}
 
 		[HttpPost]
-		public async  Task<IActionResult> CreateUser(CreateUserDto createUserDto)
+		public async Task<IActionResult> CreateUser(CreateUserDto createUserDto)
 		{
-			User user = new User()
-			{
-				FirstName = createUserDto.FirstName,
-				LastName = createUserDto.LastName,
-				UserName = createUserDto.UserName,
-				Email = createUserDto.Email			
-			};
-			var result = await _userManager.CreateAsync(user, createUserDto.Password);
-			if (result.Succeeded)
-			{
-				return RedirectToAction("Index", "LogIn");
-			}
-			return View();
+			await _userService.CreateUserAsync(createUserDto);
+			return RedirectToAction("Index", "LogIn");
 		}
 	}
 }

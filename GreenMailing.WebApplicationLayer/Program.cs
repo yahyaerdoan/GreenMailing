@@ -17,6 +17,9 @@ builder.Services.AddDbContext<IdentityDbContext<User, Role, int>, GreenMailingDb
 builder.Services.AddScoped<IMessageDal, MessageDal>();
 builder.Services.AddScoped<IMessageService, MessageManager>();
 
+builder.Services.AddScoped<IUserDal, UserDal>();
+builder.Services.AddScoped<IUserService, UserManager>();
+
 builder.Services.AddIdentity<User, Role>()
     .AddEntityFrameworkStores<GreenMailingDbContext>();
     //.AddErrorDescriber<CustomIdentityValidator>();
