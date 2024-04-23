@@ -30,22 +30,19 @@ namespace GreenMailing.WebApplicationLayer.Controllers.EntryControllers
 			var result = _logInUserValidator.Validate(logInUserDtos);
 			if (result.IsValid)
 			{
-				var userEmail = await _userManager.FindByEmailAsync(logInUserDtos.Email);
-				if (userEmail == null)
+				if (logInUserDtos.Email != null && logInUserDtos.Password != null)
 				{
-					ModelState.AddModelError("", "Invalid email or password");
-					return View(logInUserDtos);
-				}
-				var userPassword = await _signInManager.PasswordSignInAsync(userEmail, logInUserDtos.Password, true, false);
-				if (userPassword.Succeeded) 
-				{ 
-					return RedirectToAction("Index", "Inbox");
-				}
-				else
-				{
-					ModelState.AddModelError("", "Invalid email or password");
-				}
+					var userInfo = await _signInManager.PasswordSignInAsync(logInUserDtos.Email, logInUserDtos.Password, false, true);
+					if (userInfo.Succeeded)
+					{
+						return RedirectToAction("Index", "Inbox");
+					}
+					else
+					{
+						ModelState.AddModelError("", "Invalid email or password");
 
+					}
+				}
 			}
 			return View(logInUserDtos);
 		}
