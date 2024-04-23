@@ -17,8 +17,8 @@ namespace GreenMailing.BusinessLayer.Concrete.ValidationRules.UserValidationRule
             RuleFor(x => x.UserName).NotEmpty().WithMessage("User name can not be empty!");
             RuleFor(x => x.Email).NotEmpty().WithMessage("Email can not be empty!");
             RuleFor(x => x.Password).NotEmpty().WithMessage("Password can not be empty!");
-            //RuleFor(x => x.ConfirmPassword).NotEmpty().WithMessage("Confirm password can not be empty!");
-            //RuleFor(x => x.Password).Equal(x=> x.ConfirmPassword).WithMessage("Passwords do not match!");
+            RuleFor(x => x.ConfirmPassword).NotEmpty().WithMessage("Confirm password can not be empty!");
+            RuleFor(x => x.Password).Equal(x => x.ConfirmPassword).WithMessage("Passwords do not match!");
         }
     }
 }

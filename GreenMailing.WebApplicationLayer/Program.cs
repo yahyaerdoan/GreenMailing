@@ -25,7 +25,7 @@ builder.Services.AddScoped<IUserService, UserManager>();
 
 builder.Services.AddIdentity<User, Role>()
     .AddEntityFrameworkStores<GreenMailingDbContext>();
-//.AddErrorDescriber<CustomIdentityValidator>();
+
 builder.Services.AddFluentValidationAutoValidation(config =>
 {
 	config.DisableDataAnnotationsValidation = true;
@@ -49,6 +49,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(

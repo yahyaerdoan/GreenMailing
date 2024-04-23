@@ -23,7 +23,7 @@
 						<img src="~/template/vertical-layout/assets/images/logo-icon.png" alt="logo icon">
 					</div>
 					<div class="card-title text-uppercase text-center py-3">Sign Up</div>
-					<form method="post" action="/Register/Index/">
+					<form method="post">
 						<div class="form-group">
 							<label for="exampleInputName" class="sr-only">First Name</label>
 							<div class="position-relative has-icon-right">
@@ -67,7 +67,7 @@
 						<div class="form-group">
 							<label for="exampleInputPassword" class="sr-only">Password</label>
 							<div class="position-relative has-icon-right">
-								<input type="text" id="exampleInputPassword" class="form-control input-shadow" placeholder="Choose Password" asp-for="Password">
+								<input type="password" id="exampleInputPassword" class="form-control input-shadow" placeholder="Choose Password" asp-for="Password">
 								<span class="text-danger" asp-validation-for="Password"></span>
 								<div class="form-control-position">
 									<i class="icon-lock"></i>
@@ -77,7 +77,7 @@
 						<div class="form-group">
 							<label for="exampleInputPassword" class="sr-only">Password</label>
 							<div class="position-relative has-icon-right">
-								<input type="text" id="exampleInputPassword" class="form-control input-shadow" placeholder="Confirm Password" asp-for="Password">
+								<input type="password" id="exampleInputPassword" class="form-control input-shadow" placeholder="Confirm Password" asp-for="ConfirmPassword">
 								<span class="text-danger" asp-validation-for="ConfirmPassword"></span>
 								<div class="form-control-position">
 									<i class="icon-lock"></i>
@@ -107,7 +107,7 @@
 				</div>
 			</div>
 			<div class="card-footer text-center py-3">
-				<p class="text-dark mb-0">Already have an account? <a href="authentication-signin.html"> Sign In here</a></p>
+				<p class="text-dark mb-0">Already have an account? <a href="/LogIn/Index"> Sign In here</a></p>
 			</div>
 		</div>
 		<!--Start Back To Top Button-->
