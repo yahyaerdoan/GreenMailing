@@ -1,14 +1,15 @@
 ﻿using GreenMailing.BusinessLayer.Concrete.ValidationRules.UserValidationRules;
 using GreenMailing.DataTransferObjectLayer.Concrete.Dtos;
 using GreenMailing.EntityLayer.Concrete;
+using Humanizer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GreenMailing.WebApplicationLayer.Controllers.EntryControllers
 {
-    public class LogInController : Controller
-    {
-        private readonly UserManager<User> _userManager;
+	public class LogInController : Controller
+	{
+		private readonly UserManager<User> _userManager;
 		private readonly SignInManager<User> _signInManager;
 		LogInUserValidator _logInUserValidator = new();
 
@@ -20,9 +21,9 @@ namespace GreenMailing.WebApplicationLayer.Controllers.EntryControllers
 		}
 		[HttpGet]
 		public IActionResult Index()
-        {
-            return View();
-        }
+		{
+			return View();
+		}
 
 		[HttpPost]
 		public async Task<IActionResult> Index(LogInUserDto logInUserDtos)
@@ -30,18 +31,21 @@ namespace GreenMailing.WebApplicationLayer.Controllers.EntryControllers
 			var result = _logInUserValidator.Validate(logInUserDtos);
 			if (result.IsValid)
 			{
-				if (logInUserDtos.Email != null && logInUserDtos.Password != null)
+				var userEmail = await _userManager.FindByEmailAsync(logInUserDtos.Email);
+				if (userEmail == null)
 				{
-					var userInfo = await _signInManager.PasswordSignInAsync(logInUserDtos.Email, logInUserDtos.Password, false, true);
-					if (userInfo.Succeeded)
-					{
-						return RedirectToAction("Index", "Inbox");
-					}
-					else
-					{
-						ModelState.AddModelError("", "Invalid email or password");
+					ModelState.AddModelError("", "Invalid email or password");
+					return View(logInUserDtos);
+				}
+				var userInfo = await _signInManager.PasswordSignInAsync(userEmail, logInUserDtos.Password, false, true);
+				if (userInfo.Succeeded)
+				{
+					return RedirectToAction("Index", "Inbox");
+				}
+				else
+				{
+					ModelState.AddModelError("", "Invalid email or password");
 
-					}
 				}
 			}
 			return View(logInUserDtos);
