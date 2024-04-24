@@ -45,11 +45,12 @@ namespace GreenMailing.WebApplicationLayer.Controllers.EntryControllers
 		}
 
 		[HttpGet]
-		public async Task<IActionResult> UpdateUser()
+		public async Task<IActionResult> UpdateUser(int id)
 		{
             var user = await _userManager.FindByNameAsync(User.Identity.Name);
-            var userInfo = _userService.Get(x => x.Id == user.Id);
+            var userInfo = _userService.Get(x => x.Id == id);
 			UpdateUserDto updateUserDto = new();
+			//updateUserDto.Id = user.Id;
 			updateUserDto.FirstName = userInfo.FirstName;
 			updateUserDto.LastName = userInfo.LastName;
 			updateUserDto.UserName = userInfo.UserName;
@@ -61,9 +62,24 @@ namespace GreenMailing.WebApplicationLayer.Controllers.EntryControllers
 		}
 
 		[HttpPost]
-		public IActionResult UpdateUserl ()
+		public async Task<IActionResult> UpdateUser(UpdateUserDto updateUserDto)
 		{
-			return View();
+			//var user = await _userManager.FindByNameAsync(User.Identity.Name);
+            var user = _userService.Get(x => x.Id == updateUserDto.Id);
+            user.FirstName = updateUserDto.FirstName;
+			user.LastName = updateUserDto.LastName;
+			user.UserName = updateUserDto.UserName;
+			user.Image = updateUserDto.Image;
+			user.PhoneNumber = updateUserDto.PhoneNumber;
+			user.Description = updateUserDto.Description;
+			user.Email = updateUserDto.Email;
+			user.PasswordHash = _userManager.PasswordHasher.HashPassword(user, updateUserDto.Password);		
+			var updateUser = await _userManager.UpdateAsync(user);
+			if (updateUser.Succeeded) 
+			{
+				return RedirectToAction("Index", "LogIn");
+			}
+			return View(updateUserDto);
 		}
 	}
 }

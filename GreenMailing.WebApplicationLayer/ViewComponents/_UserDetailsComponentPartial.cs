@@ -17,6 +17,7 @@ namespace GreenMailing.WebApplicationLayer.ViewComponents
         {
             var user = await _userManager.FindByNameAsync(User.Identity.Name);
             ViewBag.UserName = user.FirstName + " " + user.LastName;
+            ViewBag.UserId = user.Id;
             return View();
         }
     }
