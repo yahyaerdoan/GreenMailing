@@ -10,5 +10,7 @@ namespace GreenMailing.BusinessLayer.Abstract.IAbstractService
 {
     public interface IMessageService : IGenericService<Message>
     {
+        List<Message> GetMessageListWithSender(string email);
+        List<Message> GetMessageListWithRecever(string email);
     }
 }

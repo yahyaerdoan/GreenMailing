@@ -50,6 +50,9 @@
                                                             <i class="fa fa-star"></i>
                                                         </td>
                                                         <td>
+                                                            <a href="mail-read.html">@item.User.FirstName @item.User.LastName</a>
+                                                        </td>
+                                                        <td>
                                                             <a href="mail-read.html">@item.Subject</a>
                                                         </td>
                                                         <td>
@@ -59,11 +62,11 @@
                                                             <i class="fa fa-paperclip"></i>
                                                         </td>
                                                         <td class="text-right">
-                                                            08:23 AM
+                                                           @item.Timestamp
                                                         </td>
                                                     </tr>
                                                 }
-                                               
+                                               @* 
                                                 <tr>
                                                     <td>
                                                         <div class="icheck-material-primary my-0">
@@ -157,7 +160,7 @@
                                                     <td class="text-right">
                                                         20 Jan
                                                     </td>
-                                                </tr>                                       
+                                                </tr>   *@                                     
                                             </tbody>
                                         </table>
                                     </div>

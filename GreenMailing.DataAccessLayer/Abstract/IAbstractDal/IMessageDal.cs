@@ -10,5 +10,7 @@ namespace GreenMailing.DataAccessLayer.Abstract.IAbstractDal
 {
     public interface IMessageDal : IGenericRepository<Message>
     {
+        List<Message> GetMessageListWithSender(string email);
+        List<Message> GetMessageListWithRecever(string email);
     }
 }

@@ -14,8 +14,21 @@ namespace GreenMailing.DataAccessLayer.Concrete.ConcreteDal.EntityFramework
 {
     public class MessageDal : EfGenericRepository<Message, GreenMailingDbContext>, IMessageDal
     {
-        public MessageDal(IdentityDbContext<User, Role, int> context) : base(context)
+        private readonly GreenMailingDbContext _greenMailingDbContext;
+
+        public MessageDal(IdentityDbContext<User, Role, int> context, GreenMailingDbContext greenMailingDbContext) : base(context)
         {
+            _greenMailingDbContext = greenMailingDbContext;
+        }
+
+        public List<Message> GetMessageListWithRecever(string email)
+        {
+            return _greenMailingDbContext.Messages.Include(x=>x.User).Where(x=> x.Sender == email).ToList();
+        }
+
+        public List<Message> GetMessageListWithSender(string email)
+        {
+           return _greenMailingDbContext.Messages.Include(x=> x.User).Where(x=> x.Recever == email).ToList();
         }
     }
 }
