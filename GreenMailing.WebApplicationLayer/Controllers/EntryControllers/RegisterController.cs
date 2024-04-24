@@ -9,15 +9,17 @@ namespace GreenMailing.WebApplicationLayer.Controllers.EntryControllers
 {
 	public class RegisterController : Controller
 	{
-		private readonly IUserService _userService;
+        private readonly UserManager<User> _userManager;
+        private readonly IUserService _userService;
 		CreateUserValidator _createUserValidator = new();
-		public RegisterController(IUserService userService, CreateUserValidator createUserValidator)
-		{
-			_userService = userService;
-			_createUserValidator = createUserValidator;
-		}
+        public RegisterController(IUserService userService, CreateUserValidator createUserValidator, UserManager<User> userManager)
+        {
+            _userService = userService;
+            _createUserValidator = createUserValidator;
+            _userManager = userManager;
+        }
 
-		[HttpGet]
+        [HttpGet]
 		public IActionResult Index()
 		{
 			return View();
@@ -43,9 +45,19 @@ namespace GreenMailing.WebApplicationLayer.Controllers.EntryControllers
 		}
 
 		[HttpGet]
-		public IActionResult UpdateUser()
+		public async Task<IActionResult> UpdateUser()
 		{
-			return View();
+            var user = await _userManager.FindByNameAsync(User.Identity.Name);
+            var userInfo = _userService.Get(x => x.Id == user.Id);
+			UpdateUserDto updateUserDto = new();
+			updateUserDto.FirstName = userInfo.FirstName;
+			updateUserDto.LastName = userInfo.LastName;
+			updateUserDto.UserName = userInfo.UserName;
+			updateUserDto.Image = userInfo.Image;
+			updateUserDto.PhoneNumber = userInfo.PhoneNumber;
+			updateUserDto.Description = userInfo.Description;
+			updateUserDto.Email = userInfo.Email;
+            return View(updateUserDto);
 		}
 
 		[HttpPost]

@@ -1,0 +1,68 @@
+﻿@model User
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Layout/Index.cshtml";
+}
+
+<div class="container-fluid">
+    <!-- Breadcrumb-->
+    <div class="row pt-2 pb-2">
+        <div class="col-sm-9">
+            <h4 class="page-title">User Profile</h4>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="javaScript:void();">Dashtreme</a></li>
+                <li class="breadcrumb-item"><a href="javaScript:void();">Pages</a></li>
+                <li class="breadcrumb-item active" aria-current="page">User Profile</li>
+            </ol>
+        </div>
+    </div>
+    <!-- End Breadcrumb-->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card profile-card-2" >
+                <div class="card-img-block" style="background-color:palegreen">
+                    <img class="img-fluid" src="" style="width:100%; height:auto;" alt="">
+                </div>
+                <div class="card-body pt-5">
+                    <img src="https://treegreenmd.com/wp-content/uploads/2023/09/Tree-Green-Circle-Image-2.png" alt="profile-image" class="profile">
+                    <h5 class="card-title">@Model.FirstName @Model.LastName</h5>
+                    <p class="card-text">@Model.Description</p>
+                    <div class="icon-block">
+                        <a href="javascript:void();"><i class="fa fa-facebook bg-facebook text-white"></i></a>
+                        <a href="javascript:void();"> <i class="fa fa-twitter bg-twitter text-white"></i></a>
+                        <a href="javascript:void();"> <i class="fa fa-google-plus bg-google-plus text-white"></i></a>
+                    </div>
+                </div>
+                <div class="table-responsive" style="margin-bottom:18rem; overflow-x:auto">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">First Name</th>
+                                <th scope="col">Last Name</th>
+                                <th scope="col">User Name</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Phone Number</th>
+                                <th scope="col">Description</th>
+                                <th scope="col">Update</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>@Model.FirstName</td>
+                                <td>@Model.LastName</td>
+                                <td>@Model.UserName</td>
+                                <td>@Model.Email</td>
+                                <td>@Model.PhoneNumber</td>
+                                <td>@Model.Description</td>
+                                <td><a href="/Register/UpdateUser/@Model.Id" class="btn btn-outline-success sm">Update</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="overlay toggle-menu"></div>
+</div>

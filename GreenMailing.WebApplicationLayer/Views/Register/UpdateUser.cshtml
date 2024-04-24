@@ -1,4 +1,5 @@
-﻿@{
+﻿@model UpdateUserDto
+@{
     ViewData["Title"] = "Update User";
     Layout = "~/Views/Layout/Index.cshtml";
 }
@@ -28,49 +29,55 @@
                         <div class="form-group row">
                             <label for="input-21" class="col-sm-2 col-form-label">First Name</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="input-21" placeholder="Enter Your First Name">
+                                <input type="text" class="form-control" id="input-21" placeholder="Enter Your First Name" asp-for="FirstName">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="input-21" class="col-sm-2 col-form-label">Last Name</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="input-21" placeholder="Enter Your Last Name">
+                                <input type="text" class="form-control" id="input-21" placeholder="Enter Your Last Name" asp-for="LastName">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="input-21" class="col-sm-2 col-form-label">Last Name</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="input-21" placeholder="Enter Your Last Name" asp-for="UserName">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="input-21" class="col-sm-2 col-form-label">Image Url</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="input-21" placeholder="Enter Your Image Url">
+                                <input type="text" class="form-control" id="input-21" placeholder="Enter Your Image Url" asp-for="Image">
                             </div>
                         </div>                      
                         <div class="form-group row">
                             <label for="input-23" class="col-sm-2 col-form-label">Mobile</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="input-23" placeholder="Enter Your Mobile Number">
+                                <input type="text" class="form-control" id="input-23" placeholder="Enter Your Mobile Number" asp-for="PhoneNumber">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="input-22" class="col-sm-2 col-form-label">Email</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="input-22" placeholder="Enter Your Email Address">
+                                <input type="text" class="form-control" id="input-22" placeholder="Enter Your Email Address" asp-for="Email">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="input-24" class="col-sm-2 col-form-label">Password</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="input-24" placeholder="Enter Password">
+                                <input type="text" class="form-control" id="input-24" placeholder="Enter Password" asp-for="Password">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="input-25" class="col-sm-2 col-form-label">Confirm Password</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="input-25" placeholder="Confirm Password">
+                                <input type="text" class="form-control" id="input-25" placeholder="Confirm Password" asp-for="ConfirmPassword">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="input-25" class="col-sm-2 col-form-label">Description</label>
                             <div class="col-sm-10">
-                                <textarea type="text" class="form-control" id="input-25" rows="3" placeholder="Enter Your Description"></textarea>
+                                <textarea type="text" class="form-control" id="input-25" rows="3" placeholder="Enter Your Description" asp-for="Description"></textarea>
                             </div>
                         </div>
                         <div class="form-group row">
