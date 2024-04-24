@@ -32,12 +32,16 @@
                                 <input type="hidden" class="form-control" id="input-21" placeholder="Enter Your First Name" asp-for="Id">
 
                                 <input type="text" class="form-control" id="input-21" placeholder="Enter Your First Name" asp-for="FirstName">
+                                <span class="text-danger" asp-validation-for="FirstName"></span>
+
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="input-21" class="col-sm-2 col-form-label">Last Name</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" id="input-21" placeholder="Enter Your Last Name" asp-for="LastName">
+                                <span class="text-danger" asp-validation-for="LastName"></span>
+
                             </div>
                         </div>
                         <div class="form-group row">
@@ -56,24 +60,32 @@
                             <label for="input-23" class="col-sm-2 col-form-label">Mobile</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" id="input-23" placeholder="Enter Your Mobile Number" asp-for="PhoneNumber">
+                                <span class="text-danger" asp-validation-for="PhoneNumber"></span>
+
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="input-22" class="col-sm-2 col-form-label">Email</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" id="input-22" placeholder="Enter Your Email Address" asp-for="Email">
+                                <span class="text-danger" asp-validation-for="Email"></span>
+
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="input-24" class="col-sm-2 col-form-label">Password</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" id="input-24" placeholder="Enter Password" asp-for="Password">
+                                <span class="text-danger" asp-validation-for="Password"></span>
+
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="input-25" class="col-sm-2 col-form-label">Confirm Password</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" id="input-25" placeholder="Confirm Password" asp-for="ConfirmPassword">
+                                <span class="text-danger" asp-validation-for="ConfirmPassword"></span>
+
                             </div>
                         </div>
                         <div class="form-group row">
@@ -94,7 +106,7 @@
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label"></label>
                             <div class="col-sm-10">
-                                <button type="submit" class="btn btn-primary px-5"><i class="icon-lock"></i> Register</button>
+                                <button type="submit" class="btn btn-primary px-5"><i class="icon-lock"></i> Update User</button>
                             </div>
                         </div>
                     </form>

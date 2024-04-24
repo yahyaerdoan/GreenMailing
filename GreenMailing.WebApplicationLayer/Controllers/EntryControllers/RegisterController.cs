@@ -12,11 +12,13 @@ namespace GreenMailing.WebApplicationLayer.Controllers.EntryControllers
         private readonly UserManager<User> _userManager;
         private readonly IUserService _userService;
 		CreateUserValidator _createUserValidator = new();
-        public RegisterController(IUserService userService, CreateUserValidator createUserValidator, UserManager<User> userManager)
+		UpdateUserValidator _updateUserValidator = new();
+        public RegisterController(IUserService userService, CreateUserValidator createUserValidator, UserManager<User> userManager, UpdateUserValidator updateUserValidator)
         {
             _userService = userService;
             _createUserValidator = createUserValidator;
             _userManager = userManager;
+            _updateUserValidator = updateUserValidator;
         }
 
         [HttpGet]
@@ -64,21 +66,25 @@ namespace GreenMailing.WebApplicationLayer.Controllers.EntryControllers
 		[HttpPost]
 		public async Task<IActionResult> UpdateUser(UpdateUserDto updateUserDto)
 		{
-			//var user = await _userManager.FindByNameAsync(User.Identity.Name);
-            var user = _userService.Get(x => x.Id == updateUserDto.Id);
-            user.FirstName = updateUserDto.FirstName;
-			user.LastName = updateUserDto.LastName;
-			user.UserName = updateUserDto.UserName;
-			user.Image = updateUserDto.Image;
-			user.PhoneNumber = updateUserDto.PhoneNumber;
-			user.Description = updateUserDto.Description;
-			user.Email = updateUserDto.Email;
-			user.PasswordHash = _userManager.PasswordHasher.HashPassword(user, updateUserDto.Password);		
-			var updateUser = await _userManager.UpdateAsync(user);
-			if (updateUser.Succeeded) 
+			var validate = _updateUserValidator.Validate(updateUserDto);
+			if (validate.IsValid) 
 			{
-				return RedirectToAction("Index", "LogIn");
-			}
+                //var user = await _userManager.FindByNameAsync(User.Identity.Name);
+                var user = _userService.Get(x => x.Id == updateUserDto.Id);
+                user.FirstName = updateUserDto.FirstName;
+                user.LastName = updateUserDto.LastName;
+                user.UserName = updateUserDto.UserName;
+                user.Image = updateUserDto.Image;
+                user.PhoneNumber = updateUserDto.PhoneNumber;
+                user.Description = updateUserDto.Description;
+                user.Email = updateUserDto.Email;
+                user.PasswordHash = _userManager.PasswordHasher.HashPassword(user, updateUserDto.Password);
+                var updateUser = await _userManager.UpdateAsync(user);
+                if (updateUser.Succeeded)
+                {
+                    return RedirectToAction("Index", "LogIn");
+                }
+            }			
 			return View(updateUserDto);
 		}
 	}
