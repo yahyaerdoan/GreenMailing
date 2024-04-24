@@ -41,5 +41,17 @@ namespace GreenMailing.WebApplicationLayer.Controllers.EntryControllers
             }
 			return View(createUserDto);			
 		}
+
+		[HttpGet]
+		public IActionResult UpdateUser()
+		{
+			return View();
+		}
+
+		[HttpPost]
+		public IActionResult UpdateUserl ()
+		{
+			return View();
+		}
 	}
 }
