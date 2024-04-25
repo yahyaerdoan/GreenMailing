@@ -12,7 +12,7 @@
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="javaScript:void();">Dashtreme</a></li>
                 <li class="breadcrumb-item"><a href="javaScript:void();">Mail</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Mail Inbox</li>
+                <li class="breadcrumb-item active" aria-current="page">Mail Sentbox</li>
             </ol>
         </div>
     </div>
@@ -50,13 +50,14 @@
                                                             <i class="fa fa-star"></i>
                                                         </td>
                                                         <td>
-                                                            <a href="mail-read.html">@item.User.FirstName @item.User.LastName</a>
+                                                            <a href="/ReadMail/Index/@item.MessageId">@item.User.FirstName @item.User.LastName</a>
                                                         </td>
                                                         <td>
-                                                            <a href="mail-read.html">@item.Subject</a>
+                                                            <a href="/ReadMail/Index/@item.MessageId">@item.Subject</a>
                                                         </td>
                                                         <td>
-                                                            <a href="mail-read.html"><i class="fa fa-circle text-info mr-2"></i>@item.Content</a>
+                                                            <a href="/ReadMail/Index/@item.MessageId">
+                                                                <i class="fa fa-circle text-info mr-2"></i>@item.Content</a>
                                                         </td>
                                                         <td>
                                                             <i class="fa fa-paperclip"></i>

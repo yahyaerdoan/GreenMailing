@@ -1,4 +1,5 @@
-﻿@{
+﻿@model Message
+@{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Layout/Index.cshtml";
 }
@@ -7,11 +8,11 @@
     <!-- Breadcrumb-->
     <div class="row pt-2 pb-2">
         <div class="col-sm-9">
-            <h4 class="page-title">Mail Inbox</h4>
+            <h4 class="page-title">Mail Readbox</h4>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="javaScript:void();">Dashtreme</a></li>
                 <li class="breadcrumb-item"><a href="javaScript:void();">Mail</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Mail Inbox</li>
+                <li class="breadcrumb-item active" aria-current="page">Read Mailbox</li>
             </ol>
         </div>
     </div>
@@ -36,14 +37,15 @@
                                     <div class="media mb-3">
                                         <img src="https://treegreenmd.com/wp-content/uploads/2023/09/Tree-Green-Circle-Image-2.png" class="rounded-circle mr-3 mail-img shadow" alt="media image">
                                         <div class="media-body">
-                                            <span class="media-meta float-right">08:22 AM</span>
-                                            <h4 class="m-0">Yahya John Edogan</h4>
-                                            <small>From : info@example.com</small>
+                                            <span class="media-meta float-right">@Model.Timestamp.ToString("dd MMM yyyy hh : mm tt")</span>
+                                            <h4 class="m-0">Yahya John Erdogan</h4>
+                                            <medium>From : @Model.Sender</medium>
+                                            <medium>To : @Model.Recever</medium>
                                         </div>
                                     </div> <!-- media -->
 
-                                    <p><b>Hi Sir...</b></p>
-                                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.</p>
+                                    <p><b>@Model.Subject</b></p>
+                                    <p>@Model.Content</p>
                                     <hr>
                                     <h4> <i class="fa fa-paperclip mr-2"></i> Attachments <span>(3)</span> </h4>
                                     <div class="row">
