@@ -41,7 +41,7 @@ namespace GreenMailing.BusinessLayer.Concrete.ConcreteManager
             return values;
         }
 
-        public Message GetMessageByIdWithSender(int id)
+        public Message? GetMessageByIdWithSender(int id)
         {
             return _messageDal.GetMessageByIdWithSender(id);
         }
@@ -56,6 +56,11 @@ namespace GreenMailing.BusinessLayer.Concrete.ConcreteManager
         {
             var values = _messageDal.GetMessageListWithSender(email);
             return values;
+        }
+
+        public int GetUnReadMessagesCountByIdWithRecever(string email)
+        {
+            return _messageDal.GetUnReadMessagesCountByIdWithRecever(email);
         }
 
         public void Update(Message entity)

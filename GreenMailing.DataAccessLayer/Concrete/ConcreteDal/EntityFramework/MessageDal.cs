@@ -24,7 +24,7 @@ namespace GreenMailing.DataAccessLayer.Concrete.ConcreteDal.EntityFramework
         public List<Message> GetMessageListWithRecever(string email)
         {
             return _greenMailingDbContext.Messages
-                                  .Where(m => m.Sender == email)                                
+                                  .Where(m => m.Sender == email)
                                   .Join(_greenMailingDbContext.Users,
                                         message => message.Recever,
                                         user => user.Email,
@@ -56,10 +56,16 @@ namespace GreenMailing.DataAccessLayer.Concrete.ConcreteDal.EntityFramework
                  .ToList();
         }
 
-        public Message GetMessageByIdWithSender(int id)
+        public Message? GetMessageByIdWithSender(int id)
         {
             return _greenMailingDbContext.Messages
-                 .Include(x => x.User).FirstOrDefault(x=> x.MessageId == id);
+                 .Include(x => x.User).FirstOrDefault(x => x.MessageId == id);
+        }
+
+        public int GetUnReadMessagesCountByIdWithRecever(string email)
+        {
+            return _greenMailingDbContext.Messages
+                .Include(x => x.User).Where(x => x.Recever == email && x.IsRead == false).Count();
         }
     }
 }
