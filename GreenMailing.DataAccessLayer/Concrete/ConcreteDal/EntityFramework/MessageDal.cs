@@ -24,8 +24,7 @@ namespace GreenMailing.DataAccessLayer.Concrete.ConcreteDal.EntityFramework
         public List<Message> GetMessageListWithRecever(string email)
         {
             return _greenMailingDbContext.Messages
-                                  .Where(m => m.Sender == email)
-                                  .Include(m => m.User)
+                                  .Where(m => m.Sender == email)                                
                                   .Join(_greenMailingDbContext.Users,
                                         message => message.Recever,
                                         user => user.Email,
@@ -55,6 +54,12 @@ namespace GreenMailing.DataAccessLayer.Concrete.ConcreteDal.EntityFramework
                  .Where(x => x.Recever == email)
                  .OrderByDescending(x => x.Timestamp)
                  .ToList();
+        }
+
+        public Message GetMessageByIdWithSender(int id)
+        {
+            return _greenMailingDbContext.Messages
+                 .Include(x => x.User).FirstOrDefault(x=> x.MessageId == id);
         }
     }
 }

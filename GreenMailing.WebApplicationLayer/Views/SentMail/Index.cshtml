@@ -3,6 +3,18 @@
     ViewData["Title"] = "Index";
     Layout = "~/Views/Layout/Index.cshtml";
 }
+@{
+    #region Deneme
+    @* <style>
+    .table tr {
+        display: block;
+        word-wrap: break-word;
+    }
+</style> *@
+    #endregion
+}
+
+
 
 <div class="container-fluid">
     <!-- Breadcrumb-->
@@ -33,7 +45,7 @@
                             </div>
                             <div class="card mt-3 shadow-none">
                                 <div class="card-body">
-                                    <div class="table-responsive">
+                                    <div class="table table-responsive mailbox-messages">
                                         <table class="table table-hover">
                                             <tbody>
                                                 @foreach (var item in Model)
@@ -57,7 +69,16 @@
                                                         </td>
                                                         <td>
                                                             <a href="/ReadMail/Index/@item.MessageId">
-                                                                <i class="fa fa-circle text-info mr-2"></i>@item.Content</a>
+                                                                <i class="fa fa-circle text-info mr-2"></i>
+                                                                @if (item.Content.Length >= 30)
+                                                                {
+                                                                    <span>@item.Content.Substring(0, 30)...</span>
+                                                                }
+                                                                else if (item.Content.Length <= 30)
+                                                                {
+                                                                    @item.Content
+                                                                }                                                               
+                                                                </a>
                                                         </td>
                                                         <td>
                                                             <i class="fa fa-paperclip"></i>

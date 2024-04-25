@@ -41,6 +41,11 @@ namespace GreenMailing.BusinessLayer.Concrete.ConcreteManager
             return values;
         }
 
+        public Message GetMessageByIdWithSender(int id)
+        {
+            return _messageDal.GetMessageByIdWithSender(id);
+        }
+
         public List<Message> GetMessageListWithRecever(string email)
         {
             var values = _messageDal.GetMessageListWithRecever(email); 
