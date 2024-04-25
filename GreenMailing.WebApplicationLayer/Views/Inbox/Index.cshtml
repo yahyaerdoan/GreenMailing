@@ -53,17 +53,51 @@
                                                             <a href="/ReadMail/Index/@item.MessageId"> @item.User.FirstName @item.User.LastName</a>
                                                         </td>
                                                         <td>
-                                                            <a href="/ReadMail/Index/@item.MessageId">@item.Subject</a>
+                                                            <a href="/ReadMail/Index/@item.MessageId">
+                                                                @if (item.Subject.Length >= 10)
+                                                                {
+                                                                    <span>@item.Subject.Substring(0, 10)...</span>
+                                                                }
+                                                                else
+                                                                {
+                                                                    @item.Subject
+                                                                }
+                                                                </a>
                                                         </td>
                                                         <td>
                                                             <a href="/ReadMail/Index/@item.MessageId">
-                                                                <i class="fa fa-circle text-info mr-2"></i>@item.Content</a>
+                                                                <i class="fa fa-circle text-info mr-2"></i>
+                                                                @if (item.Content.Length >= 30)
+                                                                {
+                                                                    <span>@item.Content.Substring(0, 30)...</span>
+                                                                }
+                                                                else
+                                                                {
+                                                                    @item.Content
+                                                                }
+                                                                </a>
                                                         </td>
                                                         <td>
                                                             <i class="fa fa-paperclip"></i>
                                                         </td>
                                                         <td class="text-right">
-                                                           @item.Timestamp
+                                                            @{
+                                                                DateTime currentDate = DateTime.Today;
+                                                                DateTime itemDate = item.Timestamp; // Assuming item.Date is the date you want to display
+                                                            }
+
+                                                            @if (itemDate.Date == currentDate)
+                                                            {
+                                                                <p>Today, @itemDate.ToString("t")</p> <!-- Show only time -->
+                                                            }
+                                                            else if (itemDate.Date == currentDate.AddDays(-1))
+                                                            {
+                                                                <p>Yesterday, @itemDate.ToString("dd MMM")</p> <!-- Show only date -->
+                                                            }
+                                                            else
+                                                            {
+                                                                <p>@itemDate.ToString("ddd, dd MMM")</p> <!-- Show full date -->
+                                                            }
                                                         </td>
                                                     </tr>
                                                 }
