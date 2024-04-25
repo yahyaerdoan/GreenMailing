@@ -79,5 +79,18 @@ namespace GreenMailing.DataAccessLayer.Concrete.ConcreteDal.EntityFramework
                 .Take(1)
                 .ToList();
         }
+
+        public bool? ChangeIsReadStatusToTrue(int id)
+        {
+            var message = _greenMailingDbContext.Messages.FirstOrDefault(x => x.MessageId == id);
+
+            if (message != null)
+            {
+                message.IsRead = true;
+                _greenMailingDbContext.SaveChanges();
+                return true; // Operation successful
+            }
+            return null; // Message with the specified ID not found
+        }
     }
 }

@@ -15,6 +15,7 @@ namespace GreenMailing.WebApplicationLayer.Controllers.ContentController
 
         public IActionResult Index(int id)
         {
+            _messageService.ChangeIsReadStatusToTrue(id);
             var values = _messageService.GetMessageByIdWithSender(id);
             return View(values);
         }
