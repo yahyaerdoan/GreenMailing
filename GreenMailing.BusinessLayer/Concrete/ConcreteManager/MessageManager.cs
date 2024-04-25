@@ -41,6 +41,11 @@ namespace GreenMailing.BusinessLayer.Concrete.ConcreteManager
             return values;
         }
 
+        public List<Message> GetLastOneUnReadMessagesWithReceiver(string email)
+        {
+            return _messageDal.GetLastOneUnReadMessagesWithReceiver(email);
+        }
+
         public Message? GetMessageByIdWithSender(int id)
         {
             return _messageDal.GetMessageByIdWithSender(id);

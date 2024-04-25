@@ -67,5 +67,17 @@ namespace GreenMailing.DataAccessLayer.Concrete.ConcreteDal.EntityFramework
             return _greenMailingDbContext.Messages
                 .Include(x => x.User).Where(x => x.Recever == email && x.IsRead == false).Count();
         }
+
+        public List<Message> GetLastOneUnReadMessagesWithReceiver(string email)
+        {
+            DateTime currentDate = DateTime.Today;
+
+            return _greenMailingDbContext.Messages
+                .Include(x => x.User)
+                .Where(x => x.Recever == email && !x.IsRead && x.Timestamp.Date == currentDate)
+                .OrderByDescending(x => x.Timestamp)
+                .Take(1)
+                .ToList();
+        }
     }
 }

@@ -14,5 +14,6 @@ namespace GreenMailing.BusinessLayer.Abstract.IAbstractService
         List<Message> GetMessageListWithRecever(string email);
         Message? GetMessageByIdWithSender(int id);
         int GetUnReadMessagesCountWithRecever(string email);
+        List<Message> GetLastOneUnReadMessagesWithReceiver(string email);
     }
 }

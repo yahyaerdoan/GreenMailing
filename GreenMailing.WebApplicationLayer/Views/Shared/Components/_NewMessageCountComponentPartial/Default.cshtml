@@ -1,26 +1,65 @@
-﻿<li class="nav-item dropdown-lg">
+﻿@model List<Message>
+<li class="nav-item dropdown-lg">
     <a class="nav-link dropdown-toggle dropdown-toggle-nocaret waves-effect" data-toggle="dropdown" href="javascript:void();">
-        <i class="fa fa-envelope-open-o"></i><span class="badge badge-primary badge-up">12</span>
+        <i class="fa fa-envelope-open-o"></i><span class="badge badge-primary badge-up">@ViewBag.Values</span>
     </a>
-    <div class="dropdown-menu dropdown-menu-right">
-        <ul class="list-group list-group-flush">
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-                You have 12 new messages
-                <span class="badge badge-primary">12</span>
-            </li>
-            <li class="list-group-item">
-                <a href="javaScript:void();">
-                    <div class="media">
-                        <div class="avatar"><img class="align-self-start mr-3" src="https://via.placeholder.com/110x110" alt="user avatar"></div>
-                        <div class="media-body">
-                            <h6 class="mt-0 msg-title">Jhon Deo</h6>
-                            <p class="msg-info">Lorem ipsum dolor sit amet...</p>
-                            <small>Today, 4:10 PM</small>
-                        </div>
-                    </div>
-                </a>
-            </li>
-            <li class="list-group-item text-center"><a href="javaScript:void();">See All Messages</a></li>
-        </ul>
-    </div>
+    @if (Model.Any())
+    {
+        <div class="dropdown-menu dropdown-menu-right">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <span class="badge badge-primary"></span>
+                </li>
+                <li class="list-group-item">
+                    @foreach (var item in Model)
+                    {
+                        <a href="javaScript:void();">
+                            <div class="media">
+                                <div class="avatar"><img class="align-self-start mr-3" src="https://via.placeholder.com/110x110" alt="user avatar"></div>
+                                <div class="media-body">
+                                    <h6 class="mt-0 msg-title">@item.User.FirstName @item.User.LastName</h6>
+                                    <medium>
+                                        @if (item.Subject.Length >= 25)
+                                        {
+                                            <span>@item.Subject.Substring(0, 25)...</span>
+                                        }
+                                        else
+                                        {
+                                            @item.Subject
+                                        }
+                                    </medium>
+                                    <p class="msg-info">
+                                        @if (item.Content.Length >= 35)
+                                        {
+                                            <span>@item.Content.Substring(0, 35)...</span>
+                                        }
+                                        else
+                                        {
+                                            @item.Content
+                                        }
+                                    </p>
+                                    <small>
+                                        @{
+                                            DateTime currentDate = DateTime.Today;
+                                            DateTime itemDate = item.Timestamp; // Assuming item.Timestamp is the date you want to display
+                                        }
+
+                                        @if (itemDate.Date == currentDate)
+                                        {
+                                            <p>Today, @itemDate.ToString("t")</p> <!-- Show only time -->
+                                        }
+
+                                    </small>
+                                </div>
+                            </div>
+                        </a>
+                    }
+                </li>
+                @foreach (var item in Model)
+                {
+                    <li class="list-group-item text-center"><a href="/ReadMail/Index/@item.MessageId">See the message</a></li>
+                }
+            </ul>
+        </div>        
+    }   
 </li>
