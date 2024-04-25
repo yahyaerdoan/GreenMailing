@@ -62,7 +62,7 @@ namespace GreenMailing.DataAccessLayer.Concrete.ConcreteDal.EntityFramework
                  .Include(x => x.User).FirstOrDefault(x => x.MessageId == id);
         }
 
-        public int GetUnReadMessagesCountByIdWithRecever(string email)
+        public int GetUnReadMessagesCountWithRecever(string email)
         {
             return _greenMailingDbContext.Messages
                 .Include(x => x.User).Where(x => x.Recever == email && x.IsRead == false).Count();

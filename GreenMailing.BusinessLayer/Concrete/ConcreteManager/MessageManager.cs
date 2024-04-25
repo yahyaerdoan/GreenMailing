@@ -58,9 +58,9 @@ namespace GreenMailing.BusinessLayer.Concrete.ConcreteManager
             return values;
         }
 
-        public int GetUnReadMessagesCountByIdWithRecever(string email)
+        public int GetUnReadMessagesCountWithRecever(string email)
         {
-            return _messageDal.GetUnReadMessagesCountByIdWithRecever(email);
+            return _messageDal.GetUnReadMessagesCountWithRecever(email);
         }
 
         public void Update(Message entity)

@@ -17,9 +17,9 @@ namespace GreenMailing.WebApplicationLayer.ViewComponents
             _userManager = userManager;
         }
         #region GetCurrentUserInfo
-        public async Task<User> GetCurrentUserInfo()
+        public async Task<User?> GetCurrentUserInfo()
         {
-            User userInfo = await _userManager.FindByNameAsync(User.Identity.Name);
+            User userInfo = await _userManager.FindByNameAsync(User?.Identity?.Name);
             if (userInfo == null)
             {
                 ModelState.AddModelError("", "User info not found");
@@ -30,9 +30,8 @@ namespace GreenMailing.WebApplicationLayer.ViewComponents
 
         public async Task<IViewComponentResult> InvokeAsync()
         {
-
             var userInfo = await GetCurrentUserInfo();
-            var values = _messageService.GetUnReadMessagesCountByIdWithRecever(userInfo.Email);
+            var values = _messageService.GetUnReadMessagesCountWithRecever(userInfo.Email);
             ViewBag.UnReadMessagesCount = values;
             return View(values);
         }
