@@ -23,12 +23,38 @@ namespace GreenMailing.DataAccessLayer.Concrete.ConcreteDal.EntityFramework
 
         public List<Message> GetMessageListWithRecever(string email)
         {
-            return _greenMailingDbContext.Messages.Include(x=>x.User).Where(x=> x.Sender == email).ToList();
+            return _greenMailingDbContext.Messages
+                                  .Where(m => m.Sender == email)
+                                  .Include(m => m.User)
+                                  .Join(_greenMailingDbContext.Users,
+                                        message => message.Recever,
+                                        user => user.Email,
+                                        (message, user) => new Message
+                                        {
+                                            MessageId = message.MessageId,
+                                            UserId = user.Id,
+                                            Sender = message.Sender,
+                                            Recever = message.Recever,
+                                            Subject = message.Subject,
+                                            Content = message.Content,
+                                            Timestamp = message.Timestamp,
+                                            Status = message.Status,
+                                            IsRead = message.IsRead,
+                                            IsTrash = message.IsTrash,
+                                            IsImportant = message.IsImportant,
+                                            IsStarred = message.IsStarred,
+                                            User = user
+                                        }).OrderByDescending(x => x.Timestamp)
+                                  .ToList();
         }
 
         public List<Message> GetMessageListWithSender(string email)
         {
-           return _greenMailingDbContext.Messages.Include(x=> x.User).Where(x=> x.Recever == email).ToList();
+            return _greenMailingDbContext.Messages
+                 .Include(x => x.User)
+                 .Where(x => x.Recever == email)
+                 .OrderByDescending(x => x.Timestamp)
+                 .ToList();
         }
     }
 }
