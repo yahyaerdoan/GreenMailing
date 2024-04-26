@@ -34,6 +34,11 @@ namespace GreenMailing.BusinessLayer.Concrete.ConcreteManager
             return _messageDal.ChangeIsReadStatusToTrue(id);
         }
 
+        public bool? ChangeIsStarredStatusToTrue(int id)
+        {
+            return _messageDal.ChangeIsStarredStatusToTrue(id);
+        }
+
         public void Delete(Message entity)
         {
             _messageDal.Delete(entity);
@@ -59,6 +64,11 @@ namespace GreenMailing.BusinessLayer.Concrete.ConcreteManager
         public int GetIsImportantMessagesCountWithReceiver(string email)
         {
             return _messageDal.GetIsImportantMessagesCountWithReceiver(email);
+        }
+
+        public (int count, List<Message> isStarredMessages) GetIsStarredMessagesAndCountWithReceiver(string email)
+        {
+            return _messageDal.GetIsStarredMessagesAndCountWithReceiver(email);
         }
 
         public List<Message> GetLastOneUnReadMessagesWithReceiver(string email)

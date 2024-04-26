@@ -19,5 +19,7 @@ namespace GreenMailing.BusinessLayer.Abstract.IAbstractService
         bool? ChangeIsImportantStatusToTrue(int id);
         (int count, List<Message> isImportantMessages) GetIsImportantMessagesAndCountWithReceiver(string email);
         int GetIsImportantMessagesCountWithReceiver(string email);
+        (int count, List<Message> isStarredMessages) GetIsStarredMessagesAndCountWithReceiver(string email);
+        bool? ChangeIsStarredStatusToTrue(int id);
     }
 }

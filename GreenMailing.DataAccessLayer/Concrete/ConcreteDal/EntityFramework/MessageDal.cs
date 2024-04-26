@@ -125,5 +125,29 @@ namespace GreenMailing.DataAccessLayer.Concrete.ConcreteDal.EntityFramework
             return _greenMailingDbContext.Messages
                 .Include(x => x.User).Count(x => x.Recever == email && x.IsImportant == true);
         }
+
+        public (int count, List<Message> isStarredMessages) GetIsStarredMessagesAndCountWithReceiver(string email)
+        {
+            var isStarredMessages = _greenMailingDbContext.Messages
+                .Include(x => x.User)
+                .Where(x => x.Recever == email && x.IsStarred == true)
+                .ToList();
+
+            var count = isStarredMessages.Count;
+
+            return (count, isStarredMessages);
+        }
+
+        public bool? ChangeIsStarredStatusToTrue(int id)
+        {
+            var message = _greenMailingDbContext.Messages.FirstOrDefault(x => x.MessageId == id);
+            if (message != null)
+            {
+                message.IsStarred = true;
+                _greenMailingDbContext.SaveChanges();
+                return true;
+            }
+            return null;
+        }
     }
 }

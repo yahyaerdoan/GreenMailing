@@ -39,5 +39,12 @@ namespace GreenMailing.WebApplicationLayer.Controllers.ContentController
             var values = _messageService.GetIsImportantMessagesAndCountWithReceiver(userInfo.Email);
             return View("Index",values.isImportantMessages);
         }
+
+        public async Task<IActionResult> GetIsStarredMessages()
+        {
+            var userInfo = await GetCurrentUserInfo();
+            var values = _messageService.GetIsStarredMessagesAndCountWithReceiver(userInfo.Email);
+            return View("Index", values.isStarredMessages);
+        }
     }
 }

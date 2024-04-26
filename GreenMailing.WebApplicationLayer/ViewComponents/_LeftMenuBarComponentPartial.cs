@@ -32,6 +32,8 @@ namespace GreenMailing.WebApplicationLayer.ViewComponents
             var userInfo = await GetCurrentUserInfo();
             var UnReadMessagesCount = _messageService.GetUnReadMessagesCountWithRecever(userInfo.Email);
             var isImportantMessagesCount = _messageService.GetIsImportantMessagesAndCountWithReceiver(userInfo.Email);
+            var isStarredMessagesCount = _messageService.GetIsStarredMessagesAndCountWithReceiver(userInfo.Email);
+            ViewBag.isStarredMessagesCount = isStarredMessagesCount.count;
             ViewBag.IsImportantMessagesCount = isImportantMessagesCount.count;
             ViewBag.UnReadMessagesCount = UnReadMessagesCount;
             return View();

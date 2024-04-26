@@ -51,9 +51,13 @@
                                                                 <button type="submit" style="display:none;"></button>
                                                             </form>
                                                         </td>
+
                                                         <td class="mail-rateing">
-                                                            <i class="fa fa-star"></i>
+                                                            <a href="/ReadMail/ChangeIsStarredStatusToTrue/@item.MessageId"
+                                                               class="fa fa-star @(item.IsStarred ? "text-info ml-0" : "text-muted")">
+                                                            </a>
                                                         </td>
+                                                        
                                                         <td>
                                                             <a href="/ReadMail/Index/@item.MessageId" 
                                                             class="@((item.IsRead) ? "text-muted" : "font-weight-bold")"> 
