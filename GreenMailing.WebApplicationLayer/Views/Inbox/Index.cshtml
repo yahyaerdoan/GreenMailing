@@ -40,11 +40,16 @@
                                                 {
                                                     <tr>
                                                         <td>
+                                                            <form method="post" action="/Message/Delete">
                                                             <div class="icheck-material-primary my-0">
-                                                                <input id="checkbox1" type="checkbox" checked="checked">
-                                                                <label for="checkbox1">
+                                                                <!-- Include the message ID as a data attribute -->
+                                                                <input id="checkbox_@item.MessageId" type="checkbox" class="message-checkbox" 
+                                                                data-message-id="@item.MessageId">
+                                                                <label for="checkbox_@item.MessageId">
                                                                 </label>
                                                             </div>
+                                                                <button type="submit" style="display:none;"></button>
+                                                            </form>
                                                         </td>
                                                         <td class="mail-rateing">
                                                             <i class="fa fa-star"></i>
@@ -54,12 +59,19 @@
                                                             class="@((item.IsRead) ? "text-muted" : "font-weight-bold")"> 
                                                             @item.User.FirstName @item.User.LastName</a>
                                                         </td>
+
+                                                        <td>
+                                                            <a href="/ReadMail/ChangeIsImportantStatusToTrue/@item.MessageId"
+                                                               class="fa fa-circle @(item.IsImportant ? "text-info ml-0" : "text-muted")">
+                                                            </a>
+                                                        </td>
+
                                                         <td>
                                                             <a href="/ReadMail/Index/@item.MessageId" 
                                                             class="@((item.IsRead) ? "text-muted" : "font-weight-bold")">
-                                                                @if (item.Subject.Length >= 10)
+                                                                @if (item.Subject.Length >= 20)
                                                                 {
-                                                                    <span>@item.Subject.Substring(0, 10)...</span>
+                                                                    <span>@item.Subject.Substring(0, 20)...</span>
                                                                 }
                                                                 else
                                                                 {
@@ -70,10 +82,9 @@
                                                         <td>
                                                             <a href="/ReadMail/Index/@item.MessageId"
                                                             class="@((item.IsRead) ? "text-muted" : "font-weight-bold")">
-                                                                <i class="fa fa-circle text-info mr-2"></i>
-                                                                @if (item.Content.Length >= 30)
+                                                                @if (item.Content.Length >= 50)
                                                                 {
-                                                                    <span>@item.Content.Substring(0, 30)...</span>
+                                                                    <span>@item.Content.Substring(0, 50)...</span>
                                                                 }
                                                                 else
                                                                 {

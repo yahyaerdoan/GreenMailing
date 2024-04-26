@@ -16,5 +16,6 @@ namespace GreenMailing.BusinessLayer.Abstract.IAbstractService
         int GetUnReadMessagesCountWithRecever(string email);
         List<Message> GetLastOneUnReadMessagesWithReceiver(string email);
         bool? ChangeIsReadStatusToTrue(int id);
+        bool? ChangeIsImportantStatusToTrue(int id);
     }
 }

@@ -3,18 +3,6 @@
     ViewData["Title"] = "Index";
     Layout = "~/Views/Layout/Index.cshtml";
 }
-@{
-    #region Deneme
-    @* <style>
-    .table tr {
-        display: block;
-        word-wrap: break-word;
-    }
-</style> *@
-    #endregion
-}
-
-
 
 <div class="container-fluid">
     <!-- Breadcrumb-->
@@ -45,7 +33,7 @@
                             </div>
                             <div class="card mt-3 shadow-none">
                                 <div class="card-body">
-                                    <div class="table table-responsive mailbox-messages">
+                                    <div class="table table-responsive d-flex flex-column justify-content-between align-items-start">
                                         <table class="table table-hover">
                                             <tbody>
                                                 @foreach (var item in Model)

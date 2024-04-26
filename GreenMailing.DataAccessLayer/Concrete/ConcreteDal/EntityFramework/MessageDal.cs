@@ -92,5 +92,17 @@ namespace GreenMailing.DataAccessLayer.Concrete.ConcreteDal.EntityFramework
             }
             return null; // Message with the specified ID not found
         }
+
+        public bool? ChangeIsImportantStatusToTrue(int id)
+        {
+            var message = _greenMailingDbContext.Messages.FirstOrDefault(x=> x.MessageId == id);
+            if (message != null)
+            {
+                message.IsImportant = true;
+                _greenMailingDbContext.SaveChanges();
+                return true;
+            }
+            return null;
+        }
     }
 }

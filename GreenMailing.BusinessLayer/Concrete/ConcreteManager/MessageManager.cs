@@ -24,6 +24,11 @@ namespace GreenMailing.BusinessLayer.Concrete.ConcreteManager
             _messageDal.Add(entity);
         }
 
+        public bool? ChangeIsImportantStatusToTrue(int id)
+        {
+            return _messageDal.ChangeIsImportantStatusToTrue(id);
+        }
+
         public bool? ChangeIsReadStatusToTrue(int id)
         {
             return _messageDal.ChangeIsReadStatusToTrue(id);

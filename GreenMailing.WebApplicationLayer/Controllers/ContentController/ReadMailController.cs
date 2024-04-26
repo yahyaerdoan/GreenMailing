@@ -19,5 +19,10 @@ namespace GreenMailing.WebApplicationLayer.Controllers.ContentController
             var values = _messageService.GetMessageByIdWithSender(id);
             return View(values);
         }
+        public IActionResult ChangeIsImportantStatusToTrue(int id)
+        {
+           var values = _messageService.ChangeIsImportantStatusToTrue(id);           
+            return RedirectToAction("Index", "Inbox");
+        }
     }
 }
