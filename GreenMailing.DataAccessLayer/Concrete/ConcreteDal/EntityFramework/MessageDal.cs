@@ -64,8 +64,11 @@ namespace GreenMailing.DataAccessLayer.Concrete.ConcreteDal.EntityFramework
 
         public int GetUnReadMessagesCountWithRecever(string email)
         {
+            //return _greenMailingDbContext.Messages
+            //    .Include(x => x.User).Where(x => x.Recever == email && x.IsRead == false).Count();
+
             return _greenMailingDbContext.Messages
-                .Include(x => x.User).Where(x => x.Recever == email && x.IsRead == false).Count();
+                .Include(x => x.User).Count(x => x.Recever == email && !x.IsRead);
         }
 
         public List<Message> GetLastOneUnReadMessagesWithReceiver(string email)
