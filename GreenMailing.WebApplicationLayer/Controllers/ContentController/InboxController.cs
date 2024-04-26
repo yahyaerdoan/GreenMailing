@@ -32,5 +32,12 @@ namespace GreenMailing.WebApplicationLayer.Controllers.ContentController
             var values = _messageService.GetMessageListWithSender(userInfo.Email);
             return View(values);
         }
+
+        public async Task<IActionResult> GetIsImportantMessages()
+        {
+            var userInfo = await GetCurrentUserInfo();
+            var values = _messageService.GetIsImportantMessagesAndCountWithReceiver(userInfo.Email);
+            return View("Index",values.isImportantMessages);
+        }
     }
 }
