@@ -107,5 +107,23 @@ namespace GreenMailing.DataAccessLayer.Concrete.ConcreteDal.EntityFramework
             }
             return null;
         }
+
+        public (int count, List<Message> isImportantMessages) GetIsImportantMessagesAndCountWithReceiver(string email)
+        {
+            var isImportantMessages = _greenMailingDbContext.Messages
+                .Include(x => x.User)
+                .Where(x => x.Recever == email && x.IsImportant == true)
+                .ToList();
+
+            var count = isImportantMessages.Count;
+
+            return (count, isImportantMessages);
+        }
+
+        public int GetIsImportantMessagesCountWithReceiver(string email)
+        {
+            return _greenMailingDbContext.Messages
+                .Include(x => x.User).Count(x => x.Recever == email && x.IsImportant == true);
+        }
     }
 }

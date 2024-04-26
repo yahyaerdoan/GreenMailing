@@ -51,6 +51,16 @@ namespace GreenMailing.BusinessLayer.Concrete.ConcreteManager
             return values;
         }
 
+        public (int count, List<Message> isImportantMessages) GetIsImportantMessagesAndCountWithReceiver(string email)
+        {
+            return _messageDal.GetIsImportantMessagesAndCountWithReceiver((string) email);
+        }
+
+        public int GetIsImportantMessagesCountWithReceiver(string email)
+        {
+            return _messageDal.GetIsImportantMessagesCountWithReceiver(email);
+        }
+
         public List<Message> GetLastOneUnReadMessagesWithReceiver(string email)
         {
             return _messageDal.GetLastOneUnReadMessagesWithReceiver(email);

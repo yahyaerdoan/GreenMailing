@@ -17,5 +17,7 @@ namespace GreenMailing.DataAccessLayer.Abstract.IAbstractDal
         List<Message> GetLastOneUnReadMessagesWithReceiver(string email);
         bool? ChangeIsReadStatusToTrue(int id);
         bool? ChangeIsImportantStatusToTrue(int id);
+        (int count, List<Message> isImportantMessages) GetIsImportantMessagesAndCountWithReceiver(string email);
+        int GetIsImportantMessagesCountWithReceiver(string email);
     }
 }

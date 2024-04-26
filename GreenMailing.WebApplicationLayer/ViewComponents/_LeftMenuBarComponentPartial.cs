@@ -30,9 +30,11 @@ namespace GreenMailing.WebApplicationLayer.ViewComponents
         public async Task<IViewComponentResult> InvokeAsync()
         {
             var userInfo = await GetCurrentUserInfo();
-            var values = _messageService.GetUnReadMessagesCountWithRecever(userInfo.Email);
-            ViewBag.UnReadMessagesCount = values;
-            return View(values);
+            var UnReadMessagesCount = _messageService.GetUnReadMessagesCountWithRecever(userInfo.Email);
+            var isImportantMessagesCount = _messageService.GetIsImportantMessagesAndCountWithReceiver(userInfo.Email);
+            ViewBag.IsImportantMessagesCount = isImportantMessagesCount.count;
+            ViewBag.UnReadMessagesCount = UnReadMessagesCount;
+            return View();
         }
     }
 }
