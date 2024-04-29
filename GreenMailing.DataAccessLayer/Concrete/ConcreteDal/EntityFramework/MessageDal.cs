@@ -152,6 +152,20 @@ namespace GreenMailing.DataAccessLayer.Concrete.ConcreteDal.EntityFramework
             }
             return null;
         }
+        public int? DeleteIsTrashStatusTrueMessage(List<int> id)
+        {
+            var messages = _greenMailingDbContext.Messages.Where(x => id.Contains(x.MessageId) && x.IsTrash == true).ToList();
+            if (messages.Any())
+            {
+                foreach (var message in messages)
+                {
+                    _greenMailingDbContext.Messages.Remove(message);
+                }
+                _greenMailingDbContext.SaveChanges();
+                return messages.Count;
+            }
+            return null;
+        }
         public (int count, List<Message> isTrashedMessages) GetIsTrashedMessagesAndCountWithReceiver(string email)
         {
             var isTrashedMessages = _greenMailingDbContext.Messages

@@ -45,5 +45,15 @@ namespace GreenMailing.WebApplicationLayer.Controllers.ContentController
             }
             return RedirectToAction("Index", "Inbox");
         }
+
+        public IActionResult DeleteIsTrashStatusTrueMessage(List<int> selectedItems)
+        {
+
+            if (selectedItems != null && selectedItems.Count > 0)
+            {
+                _messageService.DeleteIsTrashStatusTrueMessage(selectedItems);
+            }
+            return RedirectToAction("Index", "Inbox");
+        }
     }
 }

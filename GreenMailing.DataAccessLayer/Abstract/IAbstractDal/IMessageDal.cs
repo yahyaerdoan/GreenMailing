@@ -23,5 +23,6 @@ namespace GreenMailing.DataAccessLayer.Abstract.IAbstractDal
         bool? ChangeIsStarredStatusToTrue(int id);
         bool? ChangeIsTrashStatusToTrue(List<int> id);
         (int count, List<Message> isTrashedMessages) GetIsTrashedMessagesAndCountWithReceiver(string email);
+        int? DeleteIsTrashStatusTrueMessage(List<int> id);
     }
 }

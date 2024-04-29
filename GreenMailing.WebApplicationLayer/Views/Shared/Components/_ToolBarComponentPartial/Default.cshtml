@@ -48,6 +48,17 @@
 </div>
 <script>
     document.getElementById("deleteTheMessages").addEventListener("click", function () {
-        document.getElementById("selectedData").submit();
+        // Call submitForm function with parameter to specify the action
+        submitForm(true);
     });
+
+    function submitForm(isTrash) {
+        var form = document.getElementById("selectedData");
+        if (isTrash) {
+            form.action = "@Url.Action("DeleteIsTrashStatusTrueMessage", "ReadMail")";
+        } else {
+            form.action = "@Url.Action("ChangeIsTrashStatusToTrue", "ReadMail")";
+        }
+        form.submit();
+    }
 </script>

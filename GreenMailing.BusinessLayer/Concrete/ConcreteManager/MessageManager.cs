@@ -49,6 +49,11 @@ namespace GreenMailing.BusinessLayer.Concrete.ConcreteManager
             _messageDal.Delete(entity);
         }
 
+        public int? DeleteIsTrashStatusTrueMessage(List<int> id)
+        {
+            return _messageDal.DeleteIsTrashStatusTrueMessage(id);
+        }
+
         public Message Get(Expression<Func<Message, bool>> filter)
         {
             var values = _messageDal.Get(filter);
