@@ -46,5 +46,12 @@ namespace GreenMailing.WebApplicationLayer.Controllers.ContentController
             var values = _messageService.GetIsStarredMessagesAndCountWithReceiver(userInfo.Email);
             return View("Index", values.isStarredMessages);
         }
+
+        public async Task<IActionResult> GetIsTrashedMessages()
+        {
+            var userInfo = await GetCurrentUserInfo();
+            var values = _messageService.GetIsTrashedMessagesAndCountWithReceiver(userInfo.Email);
+            return View("Index", values.isTrashedMessages);
+        }
     }
 }

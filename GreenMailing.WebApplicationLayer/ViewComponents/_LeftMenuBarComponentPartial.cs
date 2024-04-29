@@ -33,9 +33,11 @@ namespace GreenMailing.WebApplicationLayer.ViewComponents
             var UnReadMessagesCount = _messageService.GetUnReadMessagesCountWithRecever(userInfo.Email);
             var isImportantMessagesCount = _messageService.GetIsImportantMessagesAndCountWithReceiver(userInfo.Email);
             var isStarredMessagesCount = _messageService.GetIsStarredMessagesAndCountWithReceiver(userInfo.Email);
+            var isTrashedMessages = _messageService.GetIsTrashedMessagesAndCountWithReceiver(userInfo.Email);
             ViewBag.isStarredMessagesCount = isStarredMessagesCount.count;
             ViewBag.IsImportantMessagesCount = isImportantMessagesCount.count;
             ViewBag.UnReadMessagesCount = UnReadMessagesCount;
+            ViewBag.isTrashedMessages = isTrashedMessages.count;
             return View();
         }
     }

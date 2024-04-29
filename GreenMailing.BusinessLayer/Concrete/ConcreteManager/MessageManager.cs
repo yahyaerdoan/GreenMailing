@@ -76,6 +76,11 @@ namespace GreenMailing.BusinessLayer.Concrete.ConcreteManager
             return _messageDal.GetIsStarredMessagesAndCountWithReceiver(email);
         }
 
+        public (int count, List<Message> isTrashedMessages) GetIsTrashedMessagesAndCountWithReceiver(string email)
+        {
+            return _messageDal.GetIsTrashedMessagesAndCountWithReceiver(email);
+        }
+
         public List<Message> GetLastOneUnReadMessagesWithReceiver(string email)
         {
             return _messageDal.GetLastOneUnReadMessagesWithReceiver(email);

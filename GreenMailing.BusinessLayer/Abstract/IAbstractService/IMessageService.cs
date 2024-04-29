@@ -22,5 +22,6 @@ namespace GreenMailing.BusinessLayer.Abstract.IAbstractService
         (int count, List<Message> isStarredMessages) GetIsStarredMessagesAndCountWithReceiver(string email);
         bool? ChangeIsStarredStatusToTrue(int id);
         bool? ChangeIsTrashStatusToTrue(List<int> id);
+        (int count, List<Message> isTrashedMessages) GetIsTrashedMessagesAndCountWithReceiver(string email);
     }
 }
