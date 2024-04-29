@@ -26,13 +26,23 @@ namespace GreenMailing.WebApplicationLayer.Controllers.ContentController
         }
         public IActionResult ChangeIsImportantStatusToTrue(int id)
         {
-            _messageService.ChangeIsImportantStatusToTrue(id);           
+            _messageService.ChangeIsImportantStatusToTrue(id);
             return RedirectToAction("Index", "Inbox");
         }
 
         public IActionResult ChangeIsStarredStatusToTrue(int id)
         {
             _messageService.ChangeIsStarredStatusToTrue(id);
+            return RedirectToAction("Index", "Inbox");
+        }
+
+        public IActionResult ChangeIsTrashStatusToTrue(List<int> selectedItems)
+        {
+
+            if (selectedItems != null && selectedItems.Count > 0)
+            {
+                _messageService.ChangeIsTrashStatusToTrue(selectedItems);
+            }
             return RedirectToAction("Index", "Inbox");
         }
     }

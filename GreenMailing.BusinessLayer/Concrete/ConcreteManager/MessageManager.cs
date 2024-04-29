@@ -39,6 +39,11 @@ namespace GreenMailing.BusinessLayer.Concrete.ConcreteManager
             return _messageDal.ChangeIsStarredStatusToTrue(id);
         }
 
+        public bool? ChangeIsTrashStatusToTrue(List<int> id)
+        {
+            return _messageDal?.ChangeIsTrashStatusToTrue(id);
+        }
+
         public void Delete(Message entity)
         {
             _messageDal.Delete(entity);

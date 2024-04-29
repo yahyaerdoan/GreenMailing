@@ -20,7 +20,6 @@ namespace GreenMailing.DataAccessLayer.Concrete.ConcreteDal.EntityFramework
         {
             _greenMailingDbContext = greenMailingDbContext;
         }
-
         public List<Message> GetMessageListWithRecever(string email)
         {
             return _greenMailingDbContext.Messages
@@ -46,31 +45,27 @@ namespace GreenMailing.DataAccessLayer.Concrete.ConcreteDal.EntityFramework
                                         }).OrderByDescending(x => x.Timestamp)
                                   .ToList();
         }
-
         public List<Message> GetMessageListWithSender(string email)
         {
             return _greenMailingDbContext.Messages
                  .Include(x => x.User)
-                 .Where(x => x.Recever == email)
+                 .Where(x => x.Recever == email && x.IsTrash == false)
                  .OrderByDescending(x => x.Timestamp)
                  .ToList();
         }
-
         public Message? GetMessageByIdWithSender(int id)
         {
             return _greenMailingDbContext.Messages
                  .Include(x => x.User).FirstOrDefault(x => x.MessageId == id);
         }
-
         public int GetUnReadMessagesCountWithRecever(string email)
         {
             //return _greenMailingDbContext.Messages
             //    .Include(x => x.User).Where(x => x.Recever == email && x.IsRead == false).Count();
 
             return _greenMailingDbContext.Messages
-                .Include(x => x.User).Count(x => x.Recever == email && !x.IsRead);
+                .Include(x => x.User).Count(x => x.Recever == email && !x.IsRead && !x.IsTrash);
         }
-
         public List<Message> GetLastOneUnReadMessagesWithReceiver(string email)
         {
             DateTime currentDate = DateTime.Today;
@@ -82,7 +77,6 @@ namespace GreenMailing.DataAccessLayer.Concrete.ConcreteDal.EntityFramework
                 .Take(1)
                 .ToList();
         }
-
         public bool? ChangeIsReadStatusToTrue(int id)
         {
             var message = _greenMailingDbContext.Messages.FirstOrDefault(x => x.MessageId == id);
@@ -95,7 +89,6 @@ namespace GreenMailing.DataAccessLayer.Concrete.ConcreteDal.EntityFramework
             }
             return null; // Message with the specified ID not found
         }
-
         public bool? ChangeIsImportantStatusToTrue(int id)
         {
             var message = _greenMailingDbContext.Messages.FirstOrDefault(x=> x.MessageId == id);
@@ -107,7 +100,6 @@ namespace GreenMailing.DataAccessLayer.Concrete.ConcreteDal.EntityFramework
             }
             return null;
         }
-
         public (int count, List<Message> isImportantMessages) GetIsImportantMessagesAndCountWithReceiver(string email)
         {
             var isImportantMessages = _greenMailingDbContext.Messages
@@ -119,13 +111,11 @@ namespace GreenMailing.DataAccessLayer.Concrete.ConcreteDal.EntityFramework
 
             return (count, isImportantMessages);
         }
-
         public int GetIsImportantMessagesCountWithReceiver(string email)
         {
             return _greenMailingDbContext.Messages
                 .Include(x => x.User).Count(x => x.Recever == email && x.IsImportant == true);
         }
-
         public (int count, List<Message> isStarredMessages) GetIsStarredMessagesAndCountWithReceiver(string email)
         {
             var isStarredMessages = _greenMailingDbContext.Messages
@@ -137,13 +127,26 @@ namespace GreenMailing.DataAccessLayer.Concrete.ConcreteDal.EntityFramework
 
             return (count, isStarredMessages);
         }
-
         public bool? ChangeIsStarredStatusToTrue(int id)
         {
             var message = _greenMailingDbContext.Messages.FirstOrDefault(x => x.MessageId == id);
             if (message != null)
             {
                 message.IsStarred = true;
+                _greenMailingDbContext.SaveChanges();
+                return true;
+            }
+            return null;
+        }
+        public bool? ChangeIsTrashStatusToTrue(List<int> id)
+        {
+            var messages = _greenMailingDbContext.Messages.Where(x => id.Contains(x.MessageId)).ToList();
+            if (messages.Any())
+            {
+                foreach (var message in messages)
+                {
+                    message.IsTrash = true;
+                }
                 _greenMailingDbContext.SaveChanges();
                 return true;
             }
