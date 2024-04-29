@@ -34,170 +34,98 @@
                             <div class="card mt-3 shadow-none">
                                 <div class="card-body">
                                     <div class="table table-responsive d-flex flex-column justify-content-between align-items-start">
+                                        <form id="" method="post" action="@Url.Action("ChangeIsTrashStatusToTrue", "ReadMail")">
                                         <table class="table table-hover">
                                             <tbody>
                                                 @foreach (var item in Model)
                                                 {
+
                                                     <tr>
                                                         <td>
                                                             <div class="icheck-material-primary my-0">
-                                                                <input id="checkbox1" type="checkbox" checked="checked">
-                                                                <label for="checkbox1">
-                                                                </label>
+                                                                <!-- Include the message ID as a value attribute -->
+                                                                <input id="checkbox_@item.MessageId" type="checkbox"
+                                                                       name="selectedItems" value="@item.MessageId" class="message-checkbox">
+                                                                <label for="checkbox_@item.MessageId"></label>
                                                             </div>
                                                         </td>
+
+
                                                         <td class="mail-rateing">
-                                                            <i class="fa fa-star"></i>
+                                                            <a href="/ReadMail/ChangeIsStarredStatusToTrue/@item.MessageId"
+                                                               class="fa fa-star @(item.IsStarred ? "text-info ml-0" : "text-muted")">
+                                                            </a>
                                                         </td>
+
                                                         <td>
-                                                            <a href="/ReadMail/Index/@item.MessageId">@item.User.FirstName @item.User.LastName</a>
+                                                            <a href="/ReadMail/Index/@item.MessageId"
+                                                               class="@((item.IsRead) ? "text-muted" : "font-weight-bold")">
+                                                                @item.User.FirstName @item.User.LastName
+                                                            </a>
                                                         </td>
+
                                                         <td>
-                                                            <a href="/ReadMail/Index/@item.MessageId">
-                                                                @if (item.Subject.Length >= 10)
+                                                            <a href="/ReadMail/ChangeIsImportantStatusToTrue/@item.MessageId"
+                                                               class="fa fa-circle @(item.IsImportant ? "text-info ml-0" : "text-muted")">
+                                                            </a>
+                                                        </td>
+
+                                                        <td>
+                                                            <a href="/ReadMail/Index/@item.MessageId"
+                                                               class="@((item.IsRead) ? "text-muted" : "font-weight-bold")">
+                                                                @if (item.Subject.Length >= 20)
                                                                 {
-                                                                    <span>@item.Subject.Substring(0, 10)...</span>
+                                                                    <span>@item.Subject.Substring(0, 20)...</span>
                                                                 }
                                                                 else
                                                                 {
                                                                     @item.Subject
                                                                 }
-                                                                </a>
+                                                            </a>
                                                         </td>
                                                         <td>
-                                                            <a href="/ReadMail/Index/@item.MessageId">
-                                                                <i class="fa fa-circle text-info mr-2"></i>
-                                                                @if (item.Content.Length >= 30)
+                                                            <a href="/ReadMail/Index/@item.MessageId"
+                                                               class="@((item.IsRead) ? "text-muted" : "font-weight-bold")">
+                                                                @if (item.Content.Length >= 50)
                                                                 {
-                                                                    <span>@item.Content.Substring(0, 30)...</span>
-                                                                }else                                                                
+                                                                    <span>@item.Content.Substring(0, 50)...</span>
+                                                                }
+                                                                else
                                                                 {
                                                                     @item.Content
-                                                                }                                                               
-                                                                </a>
+                                                                }
+                                                            </a>
                                                         </td>
                                                         <td>
                                                             <i class="fa fa-paperclip"></i>
                                                         </td>
                                                         <td class="text-right">
-                                                            @{
-                                                                DateTime currentDate = DateTime.Today;
-                                                                DateTime itemDate = item.Timestamp; // Assuming item.Date is the date you want to display
-                                                            }
+                                                            <a href="/ReadMail/Index/@item.MessageId"
+                                                               class="@((item.IsRead) ? "text-muted" : "font-weight-bold")">
+                                                                @{
+                                                                    DateTime currentDate = DateTime.Today;
+                                                                    DateTime itemDate = item.Timestamp; // Assuming item.Date is the date you want to display
+                                                                }
 
-                                                            @if (itemDate.Date == currentDate)
-                                                            {
-                                                                <p>Today, @itemDate.ToString("t")</p> <!-- Show only time -->
-                                                            }
-                                                            else if (itemDate.Date == currentDate.AddDays(-1))
-                                                            {
-                                                                <p>Yesterday, @itemDate.ToString("dd MMM")</p> <!-- Show only date -->
-                                                            }
-                                                            else
-                                                            {
-                                                                <p>@itemDate.ToString("ddd, dd MMM")</p> <!-- Show day of week and date -->
-                                                            }
+                                                                @if (itemDate.Date == currentDate)
+                                                                {
+                                                                    <p>Today, @itemDate.ToString("t")</p> <!-- Show only time -->
+                                                                }
+                                                                else if (itemDate.Date == currentDate.AddDays(-1))
+                                                                {
+                                                                    <p>Yesterday, @itemDate.ToString("dd MMM")</p> <!-- Show only date -->
+                                                                }
+                                                                else
+                                                                {
+                                                                    <p>@itemDate.ToString("ddd, dd MMM")</p> <!-- Show full date -->
+                                                                }
+                                                            </a>
                                                         </td>
                                                     </tr>
-
                                                 }
-                                                
-                                          @*       <tr>
-                                                    <td>
-                                                        <div class="icheck-material-primary my-0">
-                                                            <input id="checkbox2" type="checkbox" checked="checked">
-                                                            <label for="checkbox2">
-                                                            </label>
-                                                        </div>
-                                                    </td>
-                                                    <td class="mail-rateing">
-                                                        <i class="fa fa-star text-warning"></i>
-                                                    </td>
-                                                    <td>
-                                                        <a href="mail-read.html">John Deo</a>
-                                                    </td>
-                                                    <td>
-                                                        <a href="mail-read.html"><i class="fa fa-circle text-success mr-2"></i>Hi Bro, How are you?</a>
-                                                    </td>
-                                                    <td>
-                                                    </td>
-                                                    <td class="text-right">
-                                                        07:03 AM
-                                                    </td>
-                                                </tr>
-                                                <tr class="table-active">
-                                                    <td>
-                                                        <div class="icheck-material-primary my-0">
-                                                            <input id="checkbox3" type="checkbox">
-                                                            <label for="checkbox3">
-                                                            </label>
-                                                        </div>
-                                                    </td>
-                                                    <td class="mail-rateing">
-                                                        <i class="fa fa-star"></i>
-                                                    </td>
-                                                    <td>
-                                                        <a href="mail-read.html">Director</a>
-                                                    </td>
-                                                    <td>
-                                                        <a href="mail-read.html"><i class="fa fa-circle text-blue mr-2"></i>Dolor sit amet, consectetuer adipiscing</a>
-                                                    </td>
-                                                    <td>
-                                                        <i class="fa fa-paperclip"></i>
-                                                    </td>
-                                                    <td class="text-right">
-                                                        03:00 AM
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <div class="icheck-material-primary my-0">
-                                                            <input id="checkbox4" type="checkbox" checked="checked">
-                                                            <label for="checkbox4">
-                                                            </label>
-                                                        </div>
-                                                    </td>
-                                                    <td class="mail-rateing">
-                                                        <i class="fa fa-star text-warning"></i>
-                                                    </td>
-                                                    <td>
-                                                        <a href="mail-read.html">Manager</a>
-                                                    </td>
-                                                    <td>
-                                                        <a href="mail-read.html"><i class="fa fa-circle text-warning mr-2"></i>Lorem ipsum dolor sit amet, consectetuer adipiscing elit</a>
-                                                    </td>
-                                                    <td>
-                                                        <i class="fa fa-paperclip"></i>
-                                                    </td>
-                                                    <td class="text-right">
-                                                        20 Jan
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <div class="icheck-material-primary my-0">
-                                                            <input id="checkbox5" type="checkbox">
-                                                            <label for="checkbox5">
-                                                            </label>
-                                                        </div>
-                                                    </td>
-                                                    <td class="mail-rateing">
-                                                        <i class="fa fa-star text-warning"></i>
-                                                    </td>
-                                                    <td>
-                                                        <a href="mail-read.html">Facebook</a>
-                                                    </td>
-                                                    <td>
-                                                        <a href="mail-read.html">Lorem ipsum dolor sit amet, consectetuer adipiscing elit</a>
-                                                    </td>
-                                                    <td>
-                                                    </td>
-                                                    <td class="text-right">
-                                                        20 Jan
-                                                    </td>
-                                                </tr> *@
                                             </tbody>
                                         </table>
+                                        </form>
                                     </div>
                                     <hr>
                                     <div class="row">
