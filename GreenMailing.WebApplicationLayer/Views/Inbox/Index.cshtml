@@ -34,7 +34,7 @@
                             <div class="card mt-3 shadow-none">
                                 <div class="card-body">
                                     <div class="table-responsive">
-                                        <form id="selectedData" method="post" action="@Url.Action("ChangeIsTrashStatusToTrue", "ReadMail")">
+                                        <form id="selectedData" method="post" action="@Url.Action("ChangeIsTrashStatusToTrueAndDeleteIsTrashStatusTrueMessage", "ReadMail")">
                                             <table class="table table-hover">
                                                 <tbody>
                                                     @foreach (var item in Model)

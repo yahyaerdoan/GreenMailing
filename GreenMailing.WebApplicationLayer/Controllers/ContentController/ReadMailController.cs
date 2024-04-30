@@ -1,4 +1,5 @@
 ﻿using GreenMailing.BusinessLayer.Abstract.IAbstractService;
+using GreenMailing.DataAccessLayer.Concrete.Context;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json.Linq;
 
@@ -35,6 +36,7 @@ namespace GreenMailing.WebApplicationLayer.Controllers.ContentController
             _messageService.ChangeIsStarredStatusToTrue(id);
             return RedirectToAction("Index", "Inbox");
         }
+        #region These are not using
 
         public IActionResult ChangeIsTrashStatusToTrue(List<int> selectedItems)
         {
@@ -48,10 +50,31 @@ namespace GreenMailing.WebApplicationLayer.Controllers.ContentController
 
         public IActionResult DeleteIsTrashStatusTrueMessage(List<int> selectedItems)
         {
-
             if (selectedItems != null && selectedItems.Count > 0)
             {
                 _messageService.DeleteIsTrashStatusTrueMessage(selectedItems);
+            }
+            return RedirectToAction("Index", "Inbox");
+        }
+        #endregion
+
+
+        public IActionResult ChangeIsTrashStatusToTrueAndDeleteIsTrashStatusTrueMessage(List<int> selectedItems)
+        {
+            if (selectedItems != null && selectedItems.Any())
+            {
+                var firstMessage = _messageService.GetMessageByIdWithSender(selectedItems.First());
+                if (firstMessage != null)
+                {
+                    if (firstMessage.IsTrash == false)
+                    {
+                        _messageService.ChangeIsTrashStatusToTrue(selectedItems);
+                    }
+                    else
+                    {
+                        _messageService.DeleteIsTrashStatusTrueMessage(selectedItems);
+                    }
+                }
             }
             return RedirectToAction("Index", "Inbox");
         }
