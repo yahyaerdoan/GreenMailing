@@ -57,8 +57,6 @@ namespace GreenMailing.WebApplicationLayer.Controllers.ContentController
             return RedirectToAction("Index", "Inbox");
         }
         #endregion
-
-
         public IActionResult ChangeIsTrashStatusToTrueAndDeleteIsTrashStatusTrueMessage(List<int> selectedItems)
         {
             if (selectedItems != null && selectedItems.Any())
