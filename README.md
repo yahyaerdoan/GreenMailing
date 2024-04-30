@@ -12,16 +12,16 @@ Completed this project by M&Y Yazılım Eğitim Akademi Danışmanlık and by Mu
 - Deleting emails is controlled via a button.
 
 ## Technologies:
-C#
-.NET Core 6
-ASP.NET Core Identity
-Mvc
-N-Tier Architecture
-Generic Repository Design
-Dependency Injection
-Fluent Validation
-Bootstrap
-JavaScript
+- C#
+- .NET Core 6
+- ASP.NET Core Identity
+- Mvc
+- N-Tier Architecture
+- Generic Repository Design
+- Dependency Injection
+- Fluent Validation
+- Bootstrap
+- JavaScript
 ## Some Pictures
 <img width="961" alt="15" src="https://github.com/yahyaerdoan/GreenMailing/assets/77584301/ccff34e9-dd45-40c9-b991-a54f600d421d">
 <img width="961" alt="14" src="https://github.com/yahyaerdoan/GreenMailing/assets/77584301/f8a9aecf-73d4-486f-820f-7bc4a9e3d51b">
