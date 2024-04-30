@@ -57,6 +57,8 @@ namespace GreenMailing.WebApplicationLayer.Controllers.ContentController
             return RedirectToAction("Index", "Inbox");
         }
         #endregion
+
+        #region This code block for changing is trash status and deleting is trash status true messages
         public IActionResult ChangeIsTrashStatusToTrueAndDeleteIsTrashStatusTrueMessage(List<int> selectedItems)
         {
             if (selectedItems != null && selectedItems.Any())
@@ -76,5 +78,7 @@ namespace GreenMailing.WebApplicationLayer.Controllers.ContentController
             }
             return RedirectToAction("Index", "Inbox");
         }
+
+        #endregion
     }
 }
